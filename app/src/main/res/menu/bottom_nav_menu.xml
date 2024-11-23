@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:id="@+id/navigation_dashboard"
+        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:title="@string/dashboard" />
+
+    <item
+        android:id="@+id/navigation_article"
+        android:icon="@drawable/ic_article_24"
+        android:title="@string/article" />
+
+    <item
+        android:id="@+id/navigation_scan"
+        android:title="@string/scan"/>
+
+    <item
+        android:id="@+id/navigation_challenge"
+        android:icon="@drawable/ic_challenge_24"
+        android:title="@string/challenges" />
+
+    <item
+        android:id="@+id/navigation_profile"
+        android:icon="@drawable/ic_person_24"
+        android:title="@string/profile"/>
+
+
+</menu>

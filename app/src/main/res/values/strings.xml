@@ -1,0 +1,100 @@
+<resources>
+    <string name="app_name">CATLORIS</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="dashboard">Dashboard</string>
+    <string name="article">Article</string>
+    <string name="challenges">Challenges</string>
+    <string name="profile">Profile</string>
+    <string name="scan">Scan</string>
+
+    <string name="splash_logo">CatLoris Logo</string>
+
+    <!-- Login Page -->
+    <string name="login_logo">Login Logo</string>
+    <string name="login_title">log in to access your account</string>
+    <string name="email_login">Enter your email</string>
+    <string name="pass_login">Password</string>
+    <string name="forgot_pass">Forgot Password?</string>
+    <string name="login_button">LOGIN</string>
+    <string name="regist_word1">Don\'t have account?</string>
+    <string name="regist_button">Sign Up</string>
+
+    <!-- Register Page -->
+    <string name="register_logo">Register Logo</string>
+    <string name="register_title">Get Started</string>
+    <string name="register_title_1">by creating an account</string>
+    <string name="register_button">REGISTER</string>
+    <string name="login_word1">Already have an account?</string>
+    <string name="login_btn_word">Log In</string>
+    <string name="register_name">Full name</string>
+    <string name="register_email">Email</string>
+    <string name="register_phone">Phone Number</string>
+    <string name="register_pass">Password</string>
+    <string name="register_gender">Gender</string>
+
+    <!-- Dashboard -->
+    <string name="bg_dashboard_cat">Icon Cat Background</string>
+    <string name="dashboard_icon_cat">Cat Icon</string>
+    <string name="dashboard_profile_pict">Dash Profile Pict</string>
+    <string name="dashboard_welcome">Welcome,</string>
+    <string name="dashboard_name">User Name</string>
+    <string name="dashboard_point">Point : -</string>
+    <string name="dashboard_edit_profile">Button Edit Profile</string>
+    <string name="dashboard_logout">Button Logout</string>
+    <string name="dashboard_title_calories">CALORIES IN YOURS</string>
+    <string name="dashboard_calories_detect">-- KKAL</string>
+    <string name="dashboard_btn_bmi">Body Mass Index</string>
+    <string name="dashboard_btn_health_insight">Health Insight &amp; Tips</string>
+    <string name="dashboard_btn_food_history">Your Food History</string>
+    <string name="dashboard_btn_workout">Physical Activity</string>
+
+    <!-- Scan -->
+    <string name="scan_title">ANALYZE THE FOOD</string>
+    <string name="scan_photo">Scan Photo</string>
+    <string name="scan_gallery">Open Gallery</string>
+    <string name="scan_analyze">Analyze Button</string>
+    <string name="scan_camera">Open Camera</string>
+    <string name="scan_save">Save Result</string>
+    <string name="scan_result_title">ANALYZE RESULT</string>
+    <string name="scan_result_detect">Result</string>
+
+    <!-- Challenge -->
+    <string name="challenges_scroll">scroll challenges</string>
+    <string name="challenges_deck">Challenges Deck</string>
+    <string name="challenge_task">Challenge Task</string>
+    <string name="challenge_star">Challenge star</string>
+    <string name="challenge_icon">Challenge Icon</string>
+
+    <!--Article-->
+    <string name="title_article">Start Your Healthy\nJourney Today!</string>
+    <string name="description_article">description</string>
+    <string name="article_title">Article Title</string>
+    <string name="recyclerview_description">recyclerview_desc\n</string>
+    <string name="title_article_description">title_desc\n</string>
+    <string name="article_image_description">article_image_description</string>
+    <string name="article_title_description">article_title_description</string>
+    <string name="article_description_description">article_description_description\n</string>
+
+
+    <!--Profile-->
+    <string name="user_name">User Name</string>
+    <string name="useremail_example_com">UserEmail@example.com</string>
+    <string name="full_name">What’s your full name?</string>
+    <string name="Phone_Number">What’s your phone number?</string>
+    <string name="Email">What’s your Email?</string>
+    <string name="save">save</string>
+    <string name="profile_page">PROFILE PAGE</string>
+    <string name="save_profile">Save Profile</string>
+
+    <!--BMI-->
+    <string name="BMI">Body Mass Index Calculator</string>
+    <string name="Height">Your Height?\n(cm)</string>
+    <string name="weight">Your Weight?\n(kg)</string>
+    <string name="Age">Your Age?\n(y.o)</string>
+    <string name="calculate">Calculate</string>
+    <string name="hint_score">50</string>
+    <string name="bmi_result">RESULTS</string>
+
+</resources>
