@@ -97,4 +97,15 @@
     <string name="hint_score">50</string>
     <string name="bmi_result">RESULTS</string>
 
+    <!-- Workout Desc -->
+    <string name="workdesc_btn_back">Back Button</string>
+    <string name="workdesc_title">Workout Activity</string>
+    <string name="workdesc_illustration">Workout Illustration</string>
+    <string name="workdesc_rap">Rap : —</string>
+    <string name="workdesc_set">Set : —</string>
+    <string name="workdesc_done_btn">DONE</string>
+    <string name="workdesc_start_btn">Start</string>
+    <string name="workdesc_stop_btn">Stop</string>
+    <string name="workdesc_time_roll">24</string>
+
 </resources>
