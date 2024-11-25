@@ -7,18 +7,33 @@
     tools:context=".ui.article.ArticleFragment">
 
     <TextView
-        android:id="@+id/text_article"
-        android:layout_width="match_parent"
+        android:id="@+id/title_article"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:text="Ini article"
+        android:layout_marginStart="25dp"
+        android:paddingBottom="16dp"
+        android:text="@string/title_article"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:textColor="@color/color_4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/title_article_description"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="8dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/title_article"
+        tools:listitem="@layout/list_item_article"
+        android:contentDescription="@string/recyclerview_description"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

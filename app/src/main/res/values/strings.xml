@@ -96,5 +96,18 @@
     <string name="calculate">Calculate</string>
     <string name="hint_score">50</string>
     <string name="bmi_result">RESULTS</string>
+    <string name="workout_image_description">workout desc\n</string>
+    <string name="workout_title">Workout Title\n</string>
+    <string name="workout_title_description">workout title description\n</string>
+    <string name="Do">Do\n</string>
+    <string name="Title_workout">Hi, Healthy person!\nLet’s do your Workout!</string>
+    <string name="title_workout_description">title_desc\n</string>
+    <string name="title_challenges">Consume 100 Calories in \nOne Healthy Meal\n</string>
+    <string name="desc_challenges">In this challenge, players are encouraged to focus on consuming 100 calories from a single healthy meal. The goal is to inspire healthier eating habits by starting small and choosing nutrient-dense options. Examples include a serving of fresh fruit like an apple, a handful of berries, a small bowl of mixed greens with a light dressing, or a portion of unsweetened yogurt.\n\n</string>
+    <string name="food_desc">food desc\n</string>
+    <string name="food_title_description">food title desc\n</string>
+    <string name="food_history">food\n</string>
+    <string name="calories_history">578 calories\n</string>
+    <string name="sample_text">Food History\n</string>
 
 </resources>
