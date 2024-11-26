@@ -120,9 +120,18 @@
     <string name="workdesc_start_btn">Start</string>
     <string name="workdesc_stop_btn">Stop</string>
     <string name="workdesc_time_roll">24</string>
-    
+
     <!-- Welcome Page -->
     <string name="intro_first_text_desc">Cat Loris is an Android application designed to transform the calorie-tracking experience into something engaging and motivating. By incorporating gamification elements, Cat Loris brings a more enjoyable and interactive approach to daily nutrition management.</string>
-    <string name="intro_second_text_title"></string>
+    <string name="intro_second_text_title">Essential Features for a Healthier You</string>
+    <string name="intro_second_text_desc">Track Daily Calories, Input your meals, and we’ll calculate your calorie intake automatically. Nutrition Recommendations, Get personalized suggestions tailored to your health goals. Monitor Physical Activity, Record your daily exercises and see how many calories you’ve burned.</string>
+    <string name="intro_third_text_title">Let\'s get Started</string>
+    <string name="intro_third_text_desc">Enhance your well-being with the diverse and innovative features offered by the CatLoris application, designed to support your journey towards better health.</string>
+    <string name="first_intro_pict">First Pict Intro</string>
+    <string name="second_intro_pict">Second Pict Intro</string>
+    <string name="third_intro_pict">Third Pict Intro</string>
+    <string name="intro_bar">Intro Bar</string>
+    <string name="intro_next">NEXT</string>
+    <string name="intro_finish">FINISH</string>
 
 </resources>
