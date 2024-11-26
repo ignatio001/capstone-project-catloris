@@ -69,6 +69,7 @@
                     android:textStyle="bold" />
 
                 <EditText
+                    android:id="@+id/weight"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -107,6 +108,7 @@
                     android:textStyle="bold" />
 
                 <EditText
+                    android:id="@+id/age"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -148,6 +150,7 @@
             android:orientation="horizontal">
 
             <EditText
+                android:id="@+id/height"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="100dp"
@@ -175,6 +178,7 @@
         tools:ignore="MissingConstraints">
 
         <TextView
+            android:id="@+id/bmi_result"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.bangkit.catloris.databinding.FragmentDashboardBinding
 import com.bangkit.catloris.ui.auth.LoginActivity
+import com.bangkit.catloris.ui.sidefeatures.BodyMassActivity
 
 class DashboardFragment : Fragment() {
 
@@ -28,9 +29,15 @@ class DashboardFragment : Fragment() {
             startActivity(logoutIntent)
             requireActivity().finish()
         }
+        binding.bmiButton.setOnClickListener {
+            val bmiIntent = Intent(requireContext(), BodyMassActivity::class.java)
+            startActivity(bmiIntent)
+        }
+
 
         return root
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
