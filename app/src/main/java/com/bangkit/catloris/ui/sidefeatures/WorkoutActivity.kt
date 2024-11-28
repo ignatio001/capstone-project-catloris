@@ -6,16 +6,17 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.bangkit.catloris.R
+import com.bangkit.catloris.databinding.ActivityWorkoutBinding
 
 class WorkoutActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityWorkoutBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContentView(R.layout.activity_workout)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+        binding = ActivityWorkoutBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+
+        supportActionBar?.hide()
     }
 }

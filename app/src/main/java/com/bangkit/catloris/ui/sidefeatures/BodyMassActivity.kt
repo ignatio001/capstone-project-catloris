@@ -18,6 +18,8 @@ class BodyMassActivity : AppCompatActivity() {
         binding = ActivityBodyMassBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        supportActionBar?.hide()
+
         val etWeight = binding.weight
         val etHeight = binding.height
         val etAge = binding.age

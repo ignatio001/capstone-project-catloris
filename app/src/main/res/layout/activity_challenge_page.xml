@@ -3,8 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
+    android:background="@drawable/bg_challenge"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.challenge.ChallengePageActivity">
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

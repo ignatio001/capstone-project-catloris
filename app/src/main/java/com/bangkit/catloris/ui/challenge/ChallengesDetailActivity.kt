@@ -6,16 +6,15 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.bangkit.catloris.R
+import com.bangkit.catloris.databinding.ActivityChallengesDetailBinding
+import com.bangkit.catloris.databinding.ActivityWorkoutDetailBinding
 
 class ChallengesDetailActivity : AppCompatActivity() {
+    private var binding: ActivityChallengesDetailBinding? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContentView(R.layout.activity_challenges_detail)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+        binding = ActivityChallengesDetailBinding.inflate(layoutInflater)
+        setContentView(binding?.root)
     }
 }

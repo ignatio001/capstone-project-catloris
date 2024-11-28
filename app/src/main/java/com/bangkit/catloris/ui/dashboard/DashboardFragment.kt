@@ -9,6 +9,9 @@ import androidx.fragment.app.Fragment
 import com.bangkit.catloris.databinding.FragmentDashboardBinding
 import com.bangkit.catloris.ui.auth.LoginActivity
 import com.bangkit.catloris.ui.sidefeatures.BodyMassActivity
+import com.bangkit.catloris.ui.sidefeatures.FoodHistoryActivity
+import com.bangkit.catloris.ui.sidefeatures.HealthInsightActivity
+import com.bangkit.catloris.ui.sidefeatures.WorkoutActivity
 
 class DashboardFragment : Fragment() {
 
@@ -32,6 +35,19 @@ class DashboardFragment : Fragment() {
         binding.bmiButton.setOnClickListener {
             val bmiIntent = Intent(requireContext(), BodyMassActivity::class.java)
             startActivity(bmiIntent)
+        }
+        binding.hitButton.setOnClickListener {
+            val hitIntent = Intent(requireContext(), HealthInsightActivity::class.java)
+            startActivity(hitIntent)
+
+        }
+        binding.foodButton.setOnClickListener {
+            val foodIntent = Intent(requireContext(), FoodHistoryActivity::class.java)
+            startActivity(foodIntent)
+        }
+        binding.workoutButton.setOnClickListener {
+            val workoutIntent = Intent(requireContext(), WorkoutActivity::class.java)
+            startActivity(workoutIntent)
         }
 
 
