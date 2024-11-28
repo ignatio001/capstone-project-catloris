@@ -15,30 +15,20 @@
         <LinearLayout
             android:id="@+id/cam_deck_pict"
             android:layout_width="match_parent"
-            android:layout_height="350dp"
-            android:background="@drawable/custom_pict_up"
+            android:layout_height="300dp"
+            android:background="@drawable/pict_blur"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="15dp"
-                android:text="@string/scan_title"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="25sp"
-                android:textStyle="bold" />
-
             <ImageView
-                android:id="@+id/photo_result"
-                android:layout_width="250dp"
-                android:layout_height="250dp"
+                android:id="@+id/photo_analyze"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
                 android:contentDescription="@string/scan_photo"
-                android:src="@drawable/ic_image_250" />
+                android:scaleType="centerCrop" />
         </LinearLayout>
 
         <LinearLayout
@@ -56,8 +46,7 @@
                 android:id="@+id/gallery_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginEnd="40dp"
                 android:background="@drawable/tranparent"
                 android:contentDescription="@string/scan_gallery"
                 android:src="@drawable/gallery_button" />
@@ -76,8 +65,7 @@
                 android:id="@+id/camera_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginStart="40dp"
                 android:background="@drawable/tranparent"
                 android:contentDescription="@string/scan_camera"
                 android:src="@drawable/camera_button" />
@@ -88,11 +76,12 @@
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="130dp"
+            android:layout_marginTop="120dp"
             android:layout_marginEnd="20dp"
             android:background="@drawable/custom_dash_down"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cam_deck_pict">
 
@@ -117,19 +106,36 @@
                 android:textStyle="bold" />
         </LinearLayout>
 
-        <ImageButton
-            android:id="@+id/save_analyze_button"
-            android:layout_width="wrap_content"
+        <Button
+            android:id="@+id/result_save_button"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="300dp"
-            android:background="@drawable/tranparent"
-            android:contentDescription="@string/scan_save"
-            android:src="@drawable/save_button"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="30dp"
+            android:backgroundTint="@color/color_3"
+            android:text="@string/scan_save"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cam_deck_pict" />
+            app:layout_constraintTop_toBottomOf="@+id/result_deck" />
 
-
+        <Button
+            android:id="@+id/clear_pict_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:text="@string/scan_clear"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/result_save_button" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

@@ -56,7 +56,8 @@
     <string name="scan_gallery">Open Gallery</string>
     <string name="scan_analyze">Analyze Button</string>
     <string name="scan_camera">Open Camera</string>
-    <string name="scan_save">Save Result</string>
+    <string name="scan_save">SAVE RESULT</string>
+    <string name="scan_clear">CLEAR PICTURE</string>
     <string name="scan_result_title">ANALYZE RESULT</string>
     <string name="scan_result_detect">Result</string>
 
