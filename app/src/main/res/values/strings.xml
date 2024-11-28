@@ -135,4 +135,18 @@
     <string name="intro_next">NEXT</string>
     <string name="intro_finish">FINISH</string>
 
+    <!-- Parameters User Page -->
+    <string name="par_welcome">Hi, Welcome</string>
+    <string name="par_welcome_user">User Name</string>
+    <string name="par_age_title">What\'s your Age?</string>
+    <string name="par_height_title">What\'s your Height (cm)?</string>
+    <string name="par_weight_title">What\'s your Weight (kg)?</string>
+    <string name="par_fat_title">How much fat is in your body?</string>
+    <string name="par_age_hint">Example : 20</string>
+    <string name="par_height_hint">Example : 175</string>
+    <string name="par_weight_hint">Example : 70</string>
+    <string name="par_fat_hint">Example : 20(%) -> 50(%) = ?</string>
+    <string name="par_button_submit">YES I\'M DONE</string>
+    
+
 </resources>

@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg_app"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.profile.ProfileFragment">
 
@@ -34,8 +35,8 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="270dp"
         android:text="@string/user_name"
-        android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textColor="@color/color_4"
+        android:textSize="20sp"
         android:textStyle="bold" />
 
     <TextView
@@ -45,9 +46,9 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="300dp"
         android:text="@string/useremail_example_com"
-        android:textColor="@color/black"
+        android:textColor="@color/color_3"
         android:textSize="16sp"
-        android:textStyle="normal" />
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/full_name"

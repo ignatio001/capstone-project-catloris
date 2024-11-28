@@ -2,6 +2,7 @@ package com.bangkit.catloris.ui.auth
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ArrayAdapter
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -19,7 +20,7 @@ class RegisterActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         binding.registerButton.setOnClickListener {
-            val logIntent = Intent(this@RegisterActivity, LoginActivity::class.java)
+            val logIntent = Intent(this@RegisterActivity, ParameterUserActivity::class.java)
             startActivity(logIntent)
             finish()
         }
@@ -29,5 +30,14 @@ class RegisterActivity : AppCompatActivity() {
             startActivity(logbackIntent)
             finish()
         }
+
+        val genOption = arrayOf("Male", "Female")
+        val genAdapter = ArrayAdapter(
+            this, android.R.layout.simple_spinner_item,
+            genOption
+        )
+
+        genAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.registerGender.adapter = genAdapter
     }
 }
