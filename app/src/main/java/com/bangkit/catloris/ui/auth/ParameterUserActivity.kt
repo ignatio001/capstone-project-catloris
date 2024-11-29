@@ -18,7 +18,7 @@ class ParameterUserActivity : AppCompatActivity() {
         binding = ActivityParameterUserBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val fatOption = arrayOf("Underweight", "Normal", "Overweight")
+        val fatOption = arrayOf("Choose","Underweight", "Normal", "Overweight")
         val fatAdapter = ArrayAdapter(
             this,
             android.R.layout.simple_spinner_item,

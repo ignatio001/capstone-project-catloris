@@ -31,7 +31,7 @@ class RegisterActivity : AppCompatActivity() {
             finish()
         }
 
-        val genOption = arrayOf("Male", "Female")
+        val genOption = arrayOf("Choose Gender","Male", "Female")
         val genAdapter = ArrayAdapter(
             this, android.R.layout.simple_spinner_item,
             genOption
