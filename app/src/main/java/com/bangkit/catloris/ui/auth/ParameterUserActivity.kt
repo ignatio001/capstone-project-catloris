@@ -1,5 +1,6 @@
 package com.bangkit.catloris.ui.auth
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import androidx.activity.enableEdgeToEdge
@@ -17,6 +18,7 @@ class ParameterUserActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityParameterUserBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        supportActionBar?.hide()
 
         val fatOption = arrayOf("Choose","Underweight", "Normal", "Overweight")
         val fatAdapter = ArrayAdapter(
@@ -28,5 +30,10 @@ class ParameterUserActivity : AppCompatActivity() {
         fatAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.parameterFatUser.adapter = fatAdapter
 
+        binding.submitParButton.setOnClickListener {
+            val logIntent = Intent(this, LoginActivity::class.java)
+            startActivity(logIntent)
+            this.finish()
+        }
     }
 }
