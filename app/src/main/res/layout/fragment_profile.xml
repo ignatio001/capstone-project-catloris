@@ -68,7 +68,7 @@
         android:layout_height="50dp"
         android:layout_gravity="center_horizontal"
         android:background="@drawable/custom_input"
-        android:drawableEnd="@drawable/ic_person_24"
+        android:drawableEnd="@drawable/ic_person_gray"
         android:hint="@string/full_name"
         android:layout_margin="20dp"
         android:inputType="textEmailAddress"
