@@ -19,8 +19,8 @@ class WorkoutActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         val workoutList = listOf(
-            Workout("Push Up", R.drawable.push_up_illustration),
-            Workout("Sit Up", R.drawable.sit_up_illustration)
+            Workout("Push Up", "push_up_illustration"),
+            Workout("Sit Up", "sit_up_illustration")
         )
 
         adapter = WorkoutAdapter(this, workoutList)

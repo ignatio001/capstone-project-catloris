@@ -2,6 +2,7 @@ package com.bangkit.catloris.helper
 
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -29,9 +30,11 @@ class WorkoutAdapter(
     override fun onBindViewHolder(holder: WorkoutViewHolder, position: Int) {
         val workout = workoutList[position]
         with(holder.binding) {
+
+            val gifUri = Uri.parse("android.resource://${context.packageName}/raw/${workout.image}")
             Glide.with(context)
                 .asGif()
-                .load(workout.image)
+                .load(gifUri)
                 .into(workoutListImage)
 
             workoutListTitle.text = workout.title
