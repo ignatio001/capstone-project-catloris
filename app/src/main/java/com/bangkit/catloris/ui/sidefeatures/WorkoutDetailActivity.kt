@@ -16,22 +16,6 @@ class WorkoutDetailActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.hide()
 
-        val workout = intent.getParcelableExtra<Workout>("WORKOUT")
-
-        workout?.let {
-            binding.workTitle.text = it.title
-
-            val gifUri = Uri.parse("android.resource://${packageName}/raw/${it.image}")
-
-            Glide.with(this)
-                .asGif()
-                .load(gifUri)
-                .into(binding.workIllustration)
-        }
-
-        binding.workBackButton.setOnClickListener{
-            finish()
-        }
 
     }
 }

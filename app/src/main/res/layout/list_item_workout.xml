@@ -5,9 +5,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="8dp"
     app:cardCornerRadius="10dp"
-    app:cardElevation="4dp"
+    app:cardElevation="10dp"
     android:background="@drawable/bg_app"
-    android:backgroundTint="@color/color_1"
+    android:backgroundTint="@color/color_3"
     app:cardUseCompatPadding="true">
 
     <LinearLayout
@@ -20,7 +20,7 @@
         <ImageView
             android:id="@+id/workout_list_image"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="150dp"
             android:scaleType="centerCrop"
             android:layout_marginBottom="8dp"
             android:src="@drawable/ic_person_24"
@@ -31,21 +31,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/workout_title"
-            android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textColor="@color/white"
+            android:textSize="30sp"
             android:textStyle="bold"
             android:contentDescription="@string/workout_title_description"/>
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="230dp"
-            android:text="@string/Do"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:backgroundTint="@color/color_3"/>
-
-
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

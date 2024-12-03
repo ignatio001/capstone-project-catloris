@@ -19,11 +19,22 @@ class WorkoutActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         val workoutList = listOf(
-            Workout("Push Up", "push_up_illustration"),
-            Workout("Sit Up", "sit_up_illustration")
+            Workout("Push Up", R.raw.push_up_illustration),
+            Workout("Sit Up", R.raw.sit_up_illustration),
+            Workout("Plank", R.raw.plank_illustration),
+            Workout("Squat", R.raw.squat_illustration),
+            Workout("Crunch", R.raw.crunch_illustration),
+            Workout("Bicycle Crunch", R.raw.bicycle_crunch_illustration),
+            Workout("Flutter Kick", R.raw.flutter_kick_illustration),
+            Workout("Leg Raise", R.raw.leg_raise_illustration),
+            Workout("Lunges", R.raw.lunges_illustration),
+            Workout("Reverse Crunch", R.raw.reverse_crunch_illustration)
+
         )
 
-        adapter = WorkoutAdapter(this, workoutList)
+        adapter = WorkoutAdapter(workoutList) { workout ->
+
+        }
         binding.workoutRecycler.layoutManager = LinearLayoutManager(this)
         binding.workoutRecycler.adapter = adapter
 

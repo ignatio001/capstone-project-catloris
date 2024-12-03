@@ -8,5 +8,5 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class Workout(
     val title: String,
-    val image: String
+    val imageResource: Int
 ) : Parcelable

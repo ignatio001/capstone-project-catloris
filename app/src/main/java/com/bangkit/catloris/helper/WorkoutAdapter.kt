@@ -11,41 +11,38 @@ import com.bangkit.catloris.ui.sidefeatures.WorkoutDetailActivity
 import com.bumptech.glide.Glide
 
 class WorkoutAdapter(
-    private val context: Context,
-    private val workoutList: List<Workout>
+    private val workoutList: List<Workout>,
+    private val onItemClick: (Workout) -> Unit
 ) : RecyclerView.Adapter<WorkoutAdapter.WorkoutViewHolder>() {
 
     inner class WorkoutViewHolder(val binding: ListItemWorkoutBinding) :
         RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WorkoutViewHolder {
-        val binding = ListItemWorkoutBinding.inflate(LayoutInflater.from(context), parent, false)
+        val binding = ListItemWorkoutBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            false
+        )
         return WorkoutViewHolder(binding)
     }
 
-    override fun getItemCount(): Int {
-        return workoutList.size
-    }
+    override fun getItemCount(): Int = workoutList.size
 
     override fun onBindViewHolder(holder: WorkoutViewHolder, position: Int) {
         val workout = workoutList[position]
         with(holder.binding) {
-
-            val gifUri = Uri.parse("android.resource://${context.packageName}/raw/${workout.image}")
-            Glide.with(context)
+            workoutListTitle.text = workout.title
+            Glide.with(root.context)
                 .asGif()
-                .load(gifUri)
+                .load(workout.imageResource)
                 .into(workoutListImage)
 
-            workoutListTitle.text = workout.title
-
             root.setOnClickListener {
-                val intent = Intent(context, WorkoutDetailActivity::class.java).apply {
-                    putExtra("WORKOUT", workout)
-                }
-                context.startActivity(intent)
+                onItemClick(workout)
             }
         }
     }
+
 
 }
