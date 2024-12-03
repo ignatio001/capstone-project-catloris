@@ -1,5 +1,6 @@
 package com.bangkit.catloris.ui.sidefeatures
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -33,6 +34,11 @@ class WorkoutActivity : AppCompatActivity() {
         )
 
         adapter = WorkoutAdapter(workoutList) { workout ->
+            val intent = Intent(this, WorkoutDetailActivity::class.java).apply {
+                putExtra("WORKOUT_TITLE", workout.title)
+                putExtra("WORKOUT_IMAGE", workout.imageResource)
+            }
+            startActivity(intent)
 
         }
         binding.workoutRecycler.layoutManager = LinearLayoutManager(this)
