@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id("kotlin-parcelize")
 }
 
 android {
@@ -56,6 +57,7 @@ dependencies {
     implementation (libs.kotlinx.coroutines.core)
 
     implementation(libs.circleimageview)
+    implementation(libs.glide)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
