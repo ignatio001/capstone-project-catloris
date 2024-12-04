@@ -119,12 +119,14 @@
     <string name="workdesc_btn_back">Back Button</string>
     <string name="workdesc_title">Workout Activity</string>
     <string name="workdesc_illustration">Workout Illustration</string>
-    <string name="workdesc_rap">Rap : —</string>
-    <string name="workdesc_set">Set : —</string>
+    <string name="workdesc_rap">Rap : 15</string>
+    <string name="workdesc_set">Set : 2</string>
     <string name="workdesc_done_btn">DONE</string>
     <string name="workdesc_start_btn">Start</string>
-    <string name="workdesc_stop_btn">Stop</string>
-    <string name="workdesc_time_roll">24</string>
+    <string name="workdesc_con_btn">Continue</string>
+    <string name="workdesc_stop_btn">Pause</string>
+    <string name="work_reset">Reset Button</string>
+    <string name="workdesc_time_roll">60</string>
 
     <!-- Welcome Page -->
     <string name="intro_first_text_desc">Cat Loris is an Android application designed to transform the calorie-tracking experience into something engaging and motivating. By incorporating gamification elements, Cat Loris brings a more enjoyable and interactive approach to daily nutrition management.</string>
@@ -151,6 +153,7 @@
     <string name="par_weight_hint">Example : 70</string>
     <string name="par_fat_hint">Example : 20(%) -> 50(%) = ?</string>
     <string name="par_button_submit">YES I\'M DONE</string>
-    
+
+
 
 </resources>

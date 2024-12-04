@@ -36,7 +36,7 @@ class WorkoutActivity : AppCompatActivity() {
         adapter = WorkoutAdapter(workoutList) { workout ->
             val intent = Intent(this, WorkoutDetailActivity::class.java).apply {
                 putExtra("WORKOUT_TITLE", workout.title)
-                putExtra("WORKOUT_IMAGE", workout.imageResource)
+                putExtra("WORKOUT_ILLUSTRATION", workout.imageResource)
             }
             startActivity(intent)
 
