@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_app"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.profile.ProfileFragment">
 
     <TextView
@@ -12,11 +12,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
         android:text="@string/profile_page"
         android:textColor="@color/black"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -26,38 +26,38 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
         android:src="@drawable/dummy_img"
         app:civ_border_color="@color/color_3"
         app:civ_border_width="2dp"
-        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_profile_page"/>
+        app:layout_constraintTop_toBottomOf="@+id/title_profile_page" />
 
     <TextView
         android:id="@+id/profile_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
         android:text="@string/user_name"
         android:textColor="@color/color_4"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dash_profile_pict"/>
+        app:layout_constraintTop_toBottomOf="@+id/dash_profile_pict" />
 
     <TextView
         android:id="@+id/profile_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
         android:text="@string/useremail_example_com"
         android:textColor="@color/color_3"
         android:textSize="16sp"
         android:textStyle="bold"
-        android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profile_name" />
@@ -67,10 +67,10 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_gravity="center_horizontal"
+        android:layout_margin="20dp"
         android:background="@drawable/custom_input"
         android:drawableEnd="@drawable/ic_person_gray"
         android:hint="@string/full_name"
-        android:layout_margin="20dp"
         android:inputType="textEmailAddress"
         android:paddingStart="12dp"
         android:paddingEnd="12dp"
@@ -84,12 +84,12 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_gravity="center_horizontal"
+        android:layout_margin="20dp"
         android:background="@drawable/custom_input"
         android:drawableEnd="@drawable/ic_phone_grey_24"
         android:hint="@string/Phone_Number"
         android:inputType="phone"
         android:paddingStart="12dp"
-        android:layout_margin="20dp"
         android:paddingEnd="12dp"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -101,12 +101,12 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_gravity="center_horizontal"
+        android:layout_margin="20dp"
         android:background="@drawable/custom_input"
         android:drawableEnd="@drawable/ic_email_24"
         android:hint="@string/Email"
         android:paddingStart="12dp"
         android:paddingEnd="12dp"
-        android:layout_margin="20dp"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -116,15 +116,31 @@
         android:id="@+id/save_profile_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/color_4"
+        android:layout_margin="20dp"
+        android:backgroundTint="@color/color_3"
         android:text="@string/save_profile"
         android:textColor="@color/white"
         android:textSize="15sp"
         android:textStyle="bold"
-        android:layout_margin="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/email" />
+
+    <Button
+        android:id="@+id/alarm_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:backgroundTint="@color/color_4"
+        android:drawableCenter="@drawable/ic_alarm"
+        android:drawablePadding="8dp"
+        android:text="Set Alarm"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/save_profile_button" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
