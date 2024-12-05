@@ -146,8 +146,8 @@
         android:id="@+id/sidefeature_desc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
         android:layout_marginTop="10dp"
+        android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -157,8 +157,8 @@
             android:id="@+id/bmi_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/tranparent"
             android:layout_marginEnd="10dp"
+            android:background="@drawable/tranparent"
             android:contentDescription="@string/dashboard_btn_bmi"
             android:src="@drawable/bmi_button" />
 
@@ -166,9 +166,9 @@
             android:id="@+id/hit_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/tranparent"
-            android:layout_marginEnd="10dp"
             android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/tranparent"
             android:contentDescription="@string/dashboard_btn_health_insight"
             android:src="@drawable/hit_button" />
 
@@ -176,9 +176,9 @@
             android:id="@+id/food_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/tranparent"
-            android:layout_marginEnd="10dp"
             android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/tranparent"
             android:contentDescription="@string/dashboard_btn_food_history"
             android:src="@drawable/food_button" />
 
@@ -186,8 +186,8 @@
             android:id="@+id/workout_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/tranparent"
             android:layout_marginStart="10dp"
+            android:background="@drawable/tranparent"
             android:contentDescription="@string/dashboard_btn_workout"
             android:src="@drawable/physical_button" />
     </LinearLayout>
@@ -196,13 +196,13 @@
         android:id="@+id/see_more_sign"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="25dp"
         android:text="@string/dashboard_see_more"
         android:textColor="@color/black"
         android:textSize="15sp"
-        android:textStyle="normal"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="20dp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sidefeature_desc" />
@@ -211,12 +211,13 @@
         android:id="@+id/see_more_scroll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="25dp"
         android:text="@string/dashboard_scroll"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="20dp"
         android:textAlignment="textEnd"
         android:textColor="@color/new_darker"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sidefeature_desc" />
@@ -225,11 +226,11 @@
         android:id="@+id/seemore_recycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/tranparent"
-        tools:listitem="@layout/list_item_dashboard"
+        android:layout_margin="5dp"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/see_more_sign" />
+        app:layout_constraintTop_toBottomOf="@+id/see_more_sign"
+        tools:listitem="@layout/list_item_dashboard" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,12 +1,17 @@
 package com.bangkit.catloris.ui.dashboard
 
+import android.animation.ObjectAnimator
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.bangkit.catloris.R
 import com.bangkit.catloris.databinding.FragmentDashboardBinding
+import com.bangkit.catloris.helper.DashboardAdapter
+import com.bangkit.catloris.helper.DashboardItem
 import com.bangkit.catloris.ui.auth.LoginActivity
 import com.bangkit.catloris.ui.sidefeatures.BodyMassActivity
 import com.bangkit.catloris.ui.sidefeatures.FoodHistoryActivity
@@ -50,8 +55,32 @@ class DashboardFragment : Fragment() {
             startActivity(workoutIntent)
         }
 
+        setupDashRecycler()
+        playAnimation()
+
 
         return root
+    }
+
+    private fun playAnimation() {
+        ObjectAnimator.ofFloat(binding.catIllustration, View.TRANSLATION_X, -20f, 20f).apply {
+            duration = 7000
+            repeatCount = ObjectAnimator.INFINITE
+            repeatMode = ObjectAnimator.REVERSE
+        }.start()
+    }
+
+    private fun setupDashRecycler() {
+        val items = listOf(
+            DashboardItem(R.drawable.dashlide2, "https://www.google.com"),
+            DashboardItem(R.drawable.dashlide1, "https://www.google.com"),
+            DashboardItem(R.drawable.dashlide3, "https://www.google.com")
+        )
+
+        val adapter = DashboardAdapter(items)
+        binding.seemoreRecycler.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.seemoreRecycler.adapter = adapter
     }
 
 
