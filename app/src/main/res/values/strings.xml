@@ -49,6 +49,9 @@
     <string name="dashboard_btn_health_insight">Health Insight &amp; Tips</string>
     <string name="dashboard_btn_food_history">Your Food History</string>
     <string name="dashboard_btn_workout">Physical Activity</string>
+    <string name="dashboard_see_more">See More</string>
+    <string name="dashboard_scroll">Scroll >></string>
+    <string name="dashbooard_cat_illustration">Cat Illustration</string>
 
     <!-- Scan -->
     <string name="scan_title">ANALYZE THE FOOD</string>
