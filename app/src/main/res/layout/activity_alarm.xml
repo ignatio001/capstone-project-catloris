@@ -7,17 +7,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
+    android:background="@drawable/bg_app"
     tools:context=".ui.Alarm.AlarmActivity">
 
     <TextView
         android:id="@+id/tv_title"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:text="@string/one_time_alarm"
-        android:textSize="16sp"
+        android:textSize="20sp"
         android:textStyle="bold"
-        android:layout_marginStart="125dp"
+        android:textColor="@color/black"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -37,6 +39,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
             android:orientation="vertical">
 
             <LinearLayout
@@ -45,6 +48,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:padding="8dp"
+                android:layout_marginStart="10dp"
                 android:background="?android:attr/selectableItemBackground">
 
                 <Button
@@ -53,6 +57,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/color_4"
+                    android:text="@string/set_alarm_button"
                     app:icon="@drawable/baseline_access_time_24" />
 
                 <TextView
@@ -70,6 +75,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:padding="8dp"
+                android:layout_marginStart="10dp"
                 android:background="?android:attr/selectableItemBackground">
 
                 <Button
@@ -78,6 +84,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/color_4"
+                    android:text="@string/set_alarm_button"
                     app:icon="@drawable/baseline_access_time_24" />
 
                 <TextView
@@ -95,6 +102,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:padding="8dp"
+                android:layout_marginStart="10dp"
                 android:background="?android:attr/selectableItemBackground">
 
                 <Button
@@ -103,6 +111,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/color_4"
+                    android:text="@string/set_alarm_button"
                     app:icon="@drawable/baseline_access_time_24" />
 
                 <TextView
@@ -119,6 +128,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
                 android:backgroundTint="@color/color_4"
                 android:text="@string/set_one_time_alarm" />
 
@@ -126,23 +137,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:gravity="center"
                 android:layout_marginTop="16dp">
 
                 <Button
                     android:id="@+id/btn_cancel_repeating_alarm"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_weight="1"
+                    android:layout_width="170dp"
+                    android:layout_height="60dp"
+                    android:layout_marginEnd="4dp"
                     android:backgroundTint="@color/color_4"
                     android:text="@string/cancel_alarm" />
 
                 <Button
                     android:id="@+id/btn_set_repeating_alarm"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginStart="8dp"
+                    android:layout_width="170dp"
+                    android:layout_height="60dp"
+                    android:layout_marginStart="4dp"
                     android:backgroundTint="@color/color_4"
                     android:text="@string/set_repeating_alarm" />
             </LinearLayout>

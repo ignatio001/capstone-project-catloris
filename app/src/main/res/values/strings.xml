@@ -80,6 +80,8 @@
     <string name="article_image_description">article_image_description</string>
     <string name="article_title_description">article_title_description</string>
     <string name="article_description_description">article_description_description\n</string>
+    <string name="article_seemore">See More Article</string>
+    <string name="article_scroll_down">Scroll Down</string>
 
 
     <!--Profile-->
@@ -164,11 +166,13 @@
     <string name="alarm_message">Pesan Alarm</string>
     <string name="repeating_alarm">Repeating Alarm</string>
     <string name="set_repeating_alarm">Set Repeating Alarm</string>
-    <string name="cancel_alarm">Batalkan Alarm</string>
+    <string name="cancel_alarm">Cancel Alarm</string>
     <string name="alarm_time">Waktu Alarm</string>
-    <string name="malam">waktu makan malam\n</string>
-    <string name="siang">waktu makan siang</string>
-    <string name="sarapan">sarapan\n</string>
+    <string name="malam">Dinner Time</string>
+    <string name="siang">Lunch Time</string>
+    <string name="sarapan">Breakfast Time</string>
+    <string name="set_alarm_button">SET</string>
+    <string name="set_alarm_button_profile">Set Alarm</string>
 
 
 </resources>

@@ -37,6 +37,7 @@ class AlarmActivity : AppCompatActivity(), View.OnClickListener, TimePickerFragm
         super.onCreate(savedInstanceState)
         binding = ActivityAlarmBinding.inflate(layoutInflater)
         setContentView(binding?.root)
+        supportActionBar?.hide()
 
         if (Build.VERSION.SDK_INT >= 33) {
             requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
@@ -47,15 +48,15 @@ class AlarmActivity : AppCompatActivity(), View.OnClickListener, TimePickerFragm
 
         // Observasi LiveData dari ViewModel
         viewModel.breakfastTime.observe(this) { time ->
-            binding?.tvOnceTime1?.text = if (time.isNotEmpty()) time else "Sarapan"
+            binding?.tvOnceTime1?.text = if (time.isNotEmpty()) time else "Breakfast Time"
         }
 
         viewModel.lunchTime.observe(this) { time ->
-            binding?.tvOnceTime2?.text = if (time.isNotEmpty()) time else "Makan Siang"
+            binding?.tvOnceTime2?.text = if (time.isNotEmpty()) time else "Lunch Time"
         }
 
         viewModel.dinnerTime.observe(this) { time ->
-            binding?.tvOnceTime3?.text = if (time.isNotEmpty()) time else "Makan Malam"
+            binding?.tvOnceTime3?.text = if (time.isNotEmpty()) time else "Dinner Time"
         }
 
         // Listener untuk waktu makan
@@ -76,9 +77,9 @@ class AlarmActivity : AppCompatActivity(), View.OnClickListener, TimePickerFragm
 
     private fun loadAlarmData() {
         // LiveData sudah memuat data saat ViewModel diinisialisasi.
-        val breakfastTime = viewModel.breakfastTime.value ?: "Belum Diatur"
-        val lunchTime = viewModel.lunchTime.value ?: "Belum Diatur"
-        val dinnerTime = viewModel.dinnerTime.value ?: "Belum Diatur"
+        val breakfastTime = viewModel.breakfastTime.value ?: "No Set Yet"
+        val lunchTime = viewModel.lunchTime.value ?: "No Set Yet"
+        val dinnerTime = viewModel.dinnerTime.value ?: "No Set Yet"
 
         binding?.tvOnceTime1?.text = breakfastTime
         binding?.tvOnceTime2?.text = lunchTime
@@ -89,15 +90,15 @@ class AlarmActivity : AppCompatActivity(), View.OnClickListener, TimePickerFragm
         when (v?.id) {
             R.id.btn_once_time1 -> {
                 val timePickerFragment = TimePickerFragment()
-                timePickerFragment.show(supportFragmentManager, "TIME_PICKER_SARAPAN")
+                timePickerFragment.show(supportFragmentManager, "TIME_PICKER_BREAKFAST")
             }
             R.id.btn_once_time2 -> {
                 val timePickerFragment = TimePickerFragment()
-                timePickerFragment.show(supportFragmentManager, "TIME_PICKER_MAKAN_SIANG")
+                timePickerFragment.show(supportFragmentManager, "TIME_PICKER_LUNCH")
             }
             R.id.btn_once_time3 -> {
                 val timePickerFragment = TimePickerFragment()
-                timePickerFragment.show(supportFragmentManager, "TIME_PICKER_MAKAN_MALAM")
+                timePickerFragment.show(supportFragmentManager, "TIME_PICKER_DINNER")
             }
             R.id.btn_set_once_alarm -> {
                 val breakfastTime = viewModel.breakfastTime.value ?: ""
@@ -105,13 +106,13 @@ class AlarmActivity : AppCompatActivity(), View.OnClickListener, TimePickerFragm
                 val dinnerTime = viewModel.dinnerTime.value ?: ""
 
                 if (breakfastTime.isNotEmpty()) {
-                    alarmReceiver.setOneTimeAlarm(this, "Sarapan", breakfastTime, "Waktunya Sarapan!")
+                    alarmReceiver.setOneTimeAlarm(this, "Breakfast Time", breakfastTime, "It's Time to Breakfast")
                 }
                 if (lunchTime.isNotEmpty()) {
-                    alarmReceiver.setOneTimeAlarm(this, "Makan Siang", lunchTime, "Waktunya Makan Siang!")
+                    alarmReceiver.setOneTimeAlarm(this, "Lunch Time", lunchTime, "It's Time to get Lunch!")
                 }
                 if (dinnerTime.isNotEmpty()) {
-                    alarmReceiver.setOneTimeAlarm(this, "Makan Malam", dinnerTime, "Waktunya Makan Malam!")
+                    alarmReceiver.setOneTimeAlarm(this, "Dinner Time", dinnerTime, "It's Time to get your Dinner!")
                 }
             }
             R.id.btn_set_repeating_alarm -> {
@@ -120,19 +121,19 @@ class AlarmActivity : AppCompatActivity(), View.OnClickListener, TimePickerFragm
                 val dinnerTime = viewModel.dinnerTime.value ?: ""
 
                 if (breakfastTime.isNotEmpty()) {
-                    alarmReceiver.setRepeatingAlarm(this, "Sarapan", breakfastTime, "Waktunya Sarapan Setiap Hari!")
+                    alarmReceiver.setRepeatingAlarm(this, "Breakfast Time", breakfastTime, "It's Time to Have Breakfast Everyday!")
                 }
                 if (lunchTime.isNotEmpty()) {
-                    alarmReceiver.setRepeatingAlarm(this, "Makan Siang", lunchTime, "Waktunya Makan Siang Setiap Hari!")
+                    alarmReceiver.setRepeatingAlarm(this, "Lunch Time", lunchTime, "It's Time to eat your Lunch Everyday!")
                 }
                 if (dinnerTime.isNotEmpty()) {
-                    alarmReceiver.setRepeatingAlarm(this, "Makan Malam", dinnerTime, "Waktunya Makan Malam Setiap Hari!")
+                    alarmReceiver.setRepeatingAlarm(this, "Dinner Time", dinnerTime, "It's Time to Hit Your Dinner!")
                 }
             }
             R.id.btn_cancel_repeating_alarm -> {
-                alarmReceiver.cancelRepeatingAlarm(this, "Sarapan")
-                alarmReceiver.cancelRepeatingAlarm(this, "Makan Siang")
-                alarmReceiver.cancelRepeatingAlarm(this, "Makan Malam")
+                alarmReceiver.cancelRepeatingAlarm(this, "Breakfast Time")
+                alarmReceiver.cancelRepeatingAlarm(this, "Lunch Time")
+                alarmReceiver.cancelRepeatingAlarm(this, "Dinner Time")
             }
         }
     }
@@ -146,9 +147,9 @@ class AlarmActivity : AppCompatActivity(), View.OnClickListener, TimePickerFragm
         val time = timeFormat.format(calendar.time)
 
         when (tag) {
-            "TIME_PICKER_SARAPAN" -> viewModel.setBreakfastTime(time)
-            "TIME_PICKER_MAKAN_SIANG" -> viewModel.setLunchTime(time)
-            "TIME_PICKER_MAKAN_MALAM" -> viewModel.setDinnerTime(time)
+            "TIME_PICKER_BREAKFAST" -> viewModel.setBreakfastTime(time)
+            "TIME_PICKER_LUNCH" -> viewModel.setLunchTime(time)
+            "TIME_PICKER_DINNER" -> viewModel.setDinnerTime(time)
         }
     }
 
