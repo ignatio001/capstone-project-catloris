@@ -86,13 +86,13 @@
 
     <!--Profile-->
     <string name="user_name">User Name</string>
-    <string name="useremail_example_com">UserEmail@example.com</string>
+    <string name="edit_profile_button">Edit Profile</string>
     <string name="full_name">What’s your full name?</string>
     <string name="Phone_Number">What’s your phone number?</string>
     <string name="Email">What’s your Email?</string>
     <string name="save">save</string>
-    <string name="profile_page">PROFILE PAGE</string>
-    <string name="save_profile">Save Profile</string>
+    <string name="profile_page">PROFILE</string>
+    <string name="save_profil_btn">Save Profile</string>
 
     <!--BMI-->
     <string name="BMI">Body Mass Index Calculator</string>
