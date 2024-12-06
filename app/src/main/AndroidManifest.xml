@@ -46,9 +46,6 @@
             android:name=".ui.sidefeatures.FoodHistoryActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.sidefeatures.HealthInsightActivity"
-            android:exported="false" />
-        <activity
             android:name=".ui.sidefeatures.WorkoutActivity"
             android:exported="false" />
         <activity

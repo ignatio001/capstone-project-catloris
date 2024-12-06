@@ -21,13 +21,6 @@ class ProfileFragment : Fragment() {
     ): View? {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
 
-
-        binding.alarmButton.setOnClickListener {
-
-            val intent = Intent(activity, AlarmActivity::class.java)
-            startActivity(intent)
-        }
-
         return binding.root
     }
 
