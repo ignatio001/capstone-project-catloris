@@ -1,6 +1,5 @@
 package com.bangkit.catloris.ui.profile
 
-import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -12,7 +11,7 @@ import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import com.bangkit.catloris.R
 import com.bangkit.catloris.databinding.FragmentProfileBinding
-import com.bangkit.catloris.ui.Alarm.AlarmActivity
+
 
 class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
@@ -20,15 +19,12 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     private val binding get() = _binding!!
     private var currentImageUri: Uri? = null
 
-    private var isEditMode = false
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
 
-//        binding.dashprofileEdit.setOnClickListener { startGallery() }
         binding.editPictureUser.setOnClickListener { startGallery() }
 
         binding.editPictureUser.visibility = View.GONE
@@ -61,6 +57,40 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             binding.email.isFocusableInTouchMode = false
             binding.email.isFocusable = false
         }
+
+
+
+        binding.editPictureUser.visibility = View.GONE
+        binding.saveProfileButton.visibility = View.GONE
+        binding.editProfileButton.visibility = View.VISIBLE
+        binding.fullName.isFocusableInTouchMode = false
+        binding.phoneNumber.isFocusableInTouchMode = false
+        binding.email.isFocusableInTouchMode = false
+
+        binding.editProfileButton.setOnClickListener {
+            binding.editPictureUser.visibility = View.VISIBLE
+            binding.saveProfileButton.visibility = View.VISIBLE
+            binding.editProfileButton.visibility = View.GONE
+            binding.fullName.isFocusableInTouchMode = true
+            binding.fullName.isFocusable = true
+            binding.phoneNumber.isFocusableInTouchMode = true
+            binding.phoneNumber.isFocusable = true
+            binding.email.isFocusableInTouchMode = true
+            binding.email.isFocusable = true
+        }
+
+        binding.saveProfileButton.setOnClickListener {
+            binding.editPictureUser.visibility = View.GONE
+            binding.saveProfileButton.visibility = View.GONE
+            binding.editProfileButton.visibility = View.VISIBLE
+            binding.fullName.isFocusableInTouchMode = false
+            binding.fullName.isFocusable = false
+            binding.phoneNumber.isFocusableInTouchMode = false
+            binding.phoneNumber.isFocusable = false
+            binding.email.isFocusableInTouchMode = false
+            binding.email.isFocusable = false
+        }
+
 
 
 
