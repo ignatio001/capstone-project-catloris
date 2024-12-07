@@ -18,7 +18,7 @@
         <ImageView
             android:id="@+id/register_logo"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="100dp"
             android:layout_marginTop="50dp"
             android:src="@drawable/catloring_logo_real"
             app:layout_constraintEnd_toEndOf="parent"
@@ -183,6 +183,17 @@
                 android:textStyle="bold" />
 
         </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/register_progressbard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

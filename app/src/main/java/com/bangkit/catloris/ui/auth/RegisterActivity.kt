@@ -25,6 +25,13 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.hide()
 
+        val genOption = arrayOf("Choose Gender","Male", "Female")
+        val genAdapter = ArrayAdapter(
+            this, android.R.layout.simple_spinner_item,
+            genOption
+        )
+
+        // For Register
         binding.registerButton.setOnClickListener {
             val name = binding.registerName.toString().trim()
             val email = binding.registerEmail.toString().trim()
@@ -43,8 +50,11 @@ class RegisterActivity : AppCompatActivity() {
             }
 
             val logIntent = Intent(this@RegisterActivity, ParameterUserActivity::class.java)
+            logIntent.putExtra("par_username", name)
             startActivity(logIntent)
         }
+
+        observeViewModels()
 
         binding.loginBtn.setOnClickListener {
             val logbackIntent = Intent(this@RegisterActivity, LoginActivity::class.java)
@@ -52,25 +62,24 @@ class RegisterActivity : AppCompatActivity() {
             finish()
         }
 
-        val genOption = arrayOf("Choose Gender","Male", "Female")
-        val genAdapter = ArrayAdapter(
-            this, android.R.layout.simple_spinner_item,
-            genOption
-        )
+
 
         genAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.registerGender.adapter = genAdapter
+
+
     }
 
     private fun observeViewModels() {
         registerViewModel.isLoading.observe(this, Observer { isLoading ->
+            binding.registerProgressbard.visibility = if (isLoading) View.VISIBLE else View.GONE
         })
 
         registerViewModel.registerResult.observe(this, Observer { response ->
             if (response.error == true) {
-                showToast("Pendaftaran gagal: ${response.message}")
+                showToast("Registration Failed: ${response.message}")
             } else {
-                showToast("Pendaftaran berhasil: ${response.message}")
+                showToast("Registration Successfull: ${response.message}")
                 finish()
             }
         })
