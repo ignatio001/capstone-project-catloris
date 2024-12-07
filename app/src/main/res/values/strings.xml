@@ -148,7 +148,7 @@
 
     <!-- Parameters User Page -->
     <string name="par_welcome">Hi, Welcome</string>
-    <string name="par_welcome_user">User Name</string>
+    <string name="par_welcome_user">Let\'s fill the metrics below</string>
     <string name="par_age_title">What\'s your Age?</string>
     <string name="par_height_title">What\'s your Height (cm)?</string>
     <string name="par_weight_title">What\'s your Weight (kg)?</string>

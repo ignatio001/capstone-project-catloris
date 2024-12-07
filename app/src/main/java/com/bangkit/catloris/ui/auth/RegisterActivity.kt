@@ -25,6 +25,8 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.hide()
 
+        binding.registerProgressbard.visibility = View.GONE
+
         val genOption = arrayOf("Choose Gender","Male", "Female")
         val genAdapter = ArrayAdapter(
             this, android.R.layout.simple_spinner_item,
@@ -40,8 +42,7 @@ class RegisterActivity : AppCompatActivity() {
             val gender = binding.registerGender.selectedItem.toString()
 
             if (gender == "Choose Gender") {
-                binding.registerGender.requestFocus()
-                binding.registerGender.performClick()
+                showToast("Choose your Gender First!!")
                 return@setOnClickListener
             }
 

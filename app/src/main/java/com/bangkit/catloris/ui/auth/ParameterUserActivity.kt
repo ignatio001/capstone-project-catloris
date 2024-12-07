@@ -26,6 +26,8 @@ class ParameterUserActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.hide()
 
+        binding.metricsProgressbar.visibility = View.GONE
+
         val fatOption = arrayOf("Choose","Underweight", "Normal", "Overweight")
         val fatAdapter = ArrayAdapter(
             this,
@@ -35,15 +37,14 @@ class ParameterUserActivity : AppCompatActivity() {
 
         // For Submit Metrics User
         binding.submitParButton.setOnClickListener {
-            val age = binding.parameterAgeUser.toString().toInt()
-            val height = binding.parameterHeightUser.toString().toFloat()
-            val weight = binding.parameterWeightUser.toString().toFloat()
+            val age = binding.parameterAgeUser.toString().toIntOrNull() ?: 0
+            val height = binding.parameterHeightUser.text.toString().toFloatOrNull() ?: 0f
+            val weight = binding.parameterWeightUser.text.toString().toFloatOrNull() ?: 0f
             val fatsPercentage = binding.parameterFatUser.selectedItem.toString()
             val fats: Float
 
             if (fatsPercentage == "Choose") {
-                binding.parameterFatUser.requestFocus()
-                binding.parameterFatUser.performClick()
+                showToast("Choose fats calculation first!!")
                 return@setOnClickListener
             } else if (fatsPercentage == "Underweight") {
                 fats = 800f

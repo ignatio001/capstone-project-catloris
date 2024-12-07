@@ -4,6 +4,7 @@ import com.bangkit.catloris.responses.MetricsResponse
 import com.bangkit.catloris.responses.RegisterResponse
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
+import retrofit2.http.Headers
 import retrofit2.http.POST
 
 interface ApiService {
@@ -18,6 +19,7 @@ interface ApiService {
     ): RegisterResponse
 
     @FormUrlEncoded
+    @Headers("Authorization: Bearer <TOKEN>")
     @POST("/metrics/user")
     suspend fun metrics(
         @Field("age") age: Int,
