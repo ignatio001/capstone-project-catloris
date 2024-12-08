@@ -2,22 +2,21 @@ package com.bangkit.catloris.ui.auth
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
-import android.widget.ArrayAdapter
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.lifecycle.Observer
-import com.bangkit.catloris.R
+import com.bangkit.catloris.api.ApiConfig
 import com.bangkit.catloris.databinding.ActivityRegisterBinding
+import com.bangkit.catloris.helper.RegisterViewModelFactory
+import com.bangkit.catloris.helper.RegisterRepository
 import com.bangkit.catloris.helper.RegisterViewModel
+import kotlin.random.Random
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
-    private val registerViewModel: RegisterViewModel by viewModels()
+    private val viewModel: RegisterViewModel by viewModels {
+        RegisterViewModelFactory(RegisterRepository(ApiConfig.getApiService()))
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,37 +24,8 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.hide()
 
-        binding.registerProgressbard.visibility = View.GONE
-
-        val genOption = arrayOf("Choose Gender","Male", "Female")
-        val genAdapter = ArrayAdapter(
-            this, android.R.layout.simple_spinner_item,
-            genOption
-        )
-
-        // For Register
-        binding.registerButton.setOnClickListener {
-            val name = binding.registerName.toString().trim()
-            val email = binding.registerEmail.toString().trim()
-            val contact = binding.registerPhone.toString().trim()
-            val password = binding.registerPass.toString().trim()
-            val gender = binding.registerGender.selectedItem.toString()
-
-            if (gender == "Choose Gender") {
-                showToast("Choose your Gender First!!")
-                return@setOnClickListener
-            }
-
-            if (validateInput(name, email, password, contact, gender)) {
-                registerViewModel.registerUser(name, email, password, contact, gender)
-            }
-
-            val logIntent = Intent(this@RegisterActivity, ParameterUserActivity::class.java)
-            logIntent.putExtra("par_username", name)
-            startActivity(logIntent)
-        }
-
-        observeViewModels()
+        setupRegisterButton()
+        observeViewModel()
 
         binding.loginBtn.setOnClickListener {
             val logbackIntent = Intent(this@RegisterActivity, LoginActivity::class.java)
@@ -63,58 +33,45 @@ class RegisterActivity : AppCompatActivity() {
             finish()
         }
 
-
-
-        genAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        binding.registerGender.adapter = genAdapter
-
-
     }
 
-    private fun observeViewModels() {
-        registerViewModel.isLoading.observe(this, Observer { isLoading ->
-            binding.registerProgressbard.visibility = if (isLoading) View.VISIBLE else View.GONE
-        })
+    private fun setupRegisterButton() {
+        binding.registerButton.setOnClickListener {
+            val userId = Random.nextInt(1000, 9999)
+            val fullname = binding.registerName.text.toString()
+            val email = binding.registerEmail.text.toString()
+            val password = binding.registerPass.text.toString()
+            val contact = binding.registerPhone.text.toString()
+            val gender = binding.registerGender.text.toString()
 
-        registerViewModel.registerResult.observe(this, Observer { response ->
-            if (response.error == true) {
-                showToast("Registration Failed: ${response.message}")
+            if (fullname.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty() && contact.isNotEmpty()) {
+                viewModel.registerUser(userId, fullname, email, password, contact, gender)
             } else {
-                showToast("Registration Successfull: ${response.message}")
-                finish()
-            }
-        })
-    }
-
-    private fun validateInput(name: String, email: String, password: String, contact: String, gender: String): Boolean {
-        return when {
-            name.isEmpty() -> {
-                showToast("Nama tidak boleh kosong")
-                false
-            }
-            email.isEmpty() -> {
-                showToast("Email tidak boleh kosong")
-                false
-            }
-            password.isEmpty() -> {
-                showToast("Password tidak boleh kosong")
-                false
+                Toast.makeText(this, "All fields are required", Toast.LENGTH_SHORT).show()
             }
 
-            contact.isEmpty() -> {
-                showToast("Contact tidak boleh kosong")
-                false
+            val metricsIntent = Intent(this@RegisterActivity, ParameterUserActivity::class.java).apply {
+                putExtra("user_id", userId)
             }
-            gender.isEmpty() -> {
-                showToast("Gender harus pilih")
-                false
-            }
-
-            else -> true
+            startActivity(metricsIntent)
         }
     }
 
-    private fun showToast(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+
+    private fun observeViewModel() {
+        viewModel.registerState.observe(this) { response ->
+            response?.let {
+                if (it.error == false) {
+                    Toast.makeText(this, it.message ?: "Register Successful", Toast.LENGTH_SHORT).show()
+                } else if (it.error == true) {
+                    Toast.makeText(this, it.message ?: "Register failed", Toast.LENGTH_SHORT).show()
+                }
+            } ?: run {
+                Toast.makeText(this, "No response from server", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
+
+
+
 }

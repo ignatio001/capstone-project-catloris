@@ -128,7 +128,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/register_phone" />
 
-        <Spinner
+        <EditText
             android:id="@+id/register_gender"
             android:layout_width="match_parent"
             android:layout_height="60dp"
@@ -136,8 +136,12 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="30dp"
             android:background="@drawable/custom_input"
+            android:importantForAutofill="no"
+            android:inputType="text"
             android:paddingStart="12dp"
             android:paddingEnd="12dp"
+            android:drawableEnd="@drawable/ic_gender_24"
+            android:hint="@string/register_gender"
             android:spinnerMode="dropdown"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -183,15 +187,6 @@
                 android:textStyle="bold" />
 
         </LinearLayout>
-
-        <ProgressBar
-            android:id="@+id/register_progressbard"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
 
 
 

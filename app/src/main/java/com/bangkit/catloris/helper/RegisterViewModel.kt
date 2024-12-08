@@ -6,28 +6,37 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bangkit.catloris.api.ApiConfig
 import com.bangkit.catloris.responses.RegisterResponse
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
-class RegisterViewModel : ViewModel() {
-    private val repository = RegisterRepository(ApiConfig.getApiService())
+class RegisterViewModel(private val registerRepository: RegisterRepository) : ViewModel() {
 
-    private val _registerResult = MutableLiveData<RegisterResponse>()
-    val registerResult: LiveData<RegisterResponse> = _registerResult
+    private val _registerState = MutableLiveData<RegisterResponse?>()
+    val registerState: LiveData<RegisterResponse?> get() = _registerState
 
-    private val _isLoading = MutableLiveData<Boolean>()
-    val isLoading: LiveData<Boolean> = _isLoading
+    fun registerUser(
+        userId: Int,
+        fullname: String,
+        email: String,
+        password: String,
+        contact: String,
+        gender: String
+    ) {
 
-    fun registerUser(name: String, email: String, password: String, contact: String, gender: String) {
-        _isLoading.value = true
         viewModelScope.launch {
             try {
-                val response = repository.registerUser(name, email, password, contact, gender)
-                _registerResult.value = response
+                val response = registerRepository.registerUser(userId, fullname, email, password, contact, gender)
+                _registerState.postValue(response)
             } catch (e: Exception) {
-                _registerResult.value = RegisterResponse(error = true, message = e.message)
-            } finally {
-                _isLoading.value = false
+                e.printStackTrace()
+                _registerState.postValue(null)
             }
         }
     }
+
 }

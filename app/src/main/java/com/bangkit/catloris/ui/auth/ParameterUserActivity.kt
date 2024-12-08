@@ -3,6 +3,7 @@ package com.bangkit.catloris.ui.auth
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -12,13 +13,20 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.Observer
 import com.bangkit.catloris.R
+import com.bangkit.catloris.api.ApiConfig
 import com.bangkit.catloris.databinding.ActivityParameterUserBinding
+import com.bangkit.catloris.helper.MetricsRepository
 import com.bangkit.catloris.helper.MetricsViewModel
+import com.bangkit.catloris.helper.MetricsViewModelFactory
 
 class ParameterUserActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityParameterUserBinding
-    private val metricsViewModel: MetricsViewModel by viewModels()
+    private val viewModel: MetricsViewModel by viewModels {
+        MetricsViewModelFactory(MetricsRepository(ApiConfig.getApiService()))
+    }
+
+    private var userId: Int = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,89 +34,63 @@ class ParameterUserActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.hide()
 
-        binding.metricsProgressbar.visibility = View.GONE
+        userId = intent.getIntExtra("user_id", -1)
 
-        val fatOption = arrayOf("Choose","Underweight", "Normal", "Overweight")
-        val fatAdapter = ArrayAdapter(
-            this,
-            android.R.layout.simple_spinner_item,
-            fatOption
-        )
-
-        // For Submit Metrics User
-        binding.submitParButton.setOnClickListener {
-            val age = binding.parameterAgeUser.toString().toIntOrNull() ?: 0
-            val height = binding.parameterHeightUser.text.toString().toFloatOrNull() ?: 0f
-            val weight = binding.parameterWeightUser.text.toString().toFloatOrNull() ?: 0f
-            val fatsPercentage = binding.parameterFatUser.selectedItem.toString()
-            val fats: Float
-
-            if (fatsPercentage == "Choose") {
-                showToast("Choose fats calculation first!!")
-                return@setOnClickListener
-            } else if (fatsPercentage == "Underweight") {
-                fats = 800f
-            } else if (fatsPercentage == "Normal") {
-                fats = 1500f
-            } else {
-                fats = 2000f
-            }
-
-            if (validateInput(age, height,weight, fats)) {
-                metricsViewModel.metricsUser(age, height, weight, fats)
-            }
-
-            val logIntent = Intent(this, LoginActivity::class.java)
-            startActivity(logIntent)
-            this.finish()
-        }
-
+        setupSpinner()
+        setupSaveButton()
         observeViewModels()
+    }
 
-        fatAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        binding.parameterFatUser.adapter = fatAdapter
+    private fun setupSaveButton() {
+        binding.submitParButton.setOnClickListener {
+            val age = binding.parameterAgeUser.text.toString().toIntOrNull()
+            val height = binding.parameterHeightUser.text.toString().toFloatOrNull()
+            val weight = binding.parameterWeightUser.text.toString().toFloatOrNull()
+            val fats = binding.parameterFatUser.selectedItem.toString()
+
+            if (age != null && height != null && weight != null && fats != "Choose") {
+                viewModel.sendMetrics(userId, age, height, weight, fats.toFloat())
+            } else {
+                Toast.makeText(this, "All fields are required and fats option must be selected", Toast.LENGTH_SHORT).show()
+            }
+
+            val logIntent = Intent(this@ParameterUserActivity, LoginActivity::class.java)
+            startActivity(logIntent)
+            finish()
+        }
+    }
+
+    private fun setupSpinner() {
+        val fatsOptions = arrayOf("Choose", "Underweight", "Ideal", "Overweight")
+        val fatsValues = arrayOf(0f, 800f, 1500f, 2000f)
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, fatsOptions)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.parameterFatUser.adapter = adapter
+
+        binding.parameterFatUser.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: android.view.View?, position: Int, id: Long) {
+                binding.fatsValue.text = fatsValues[position].toString()
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {
+                binding.fatsValue.text = "0"
+            }
+        }
     }
 
     private fun observeViewModels() {
-        metricsViewModel.isLoading.observe(this, Observer { isLoading ->
-            binding.metricsProgressbar.visibility = if (isLoading) View.VISIBLE else View.GONE
-        })
-
-        metricsViewModel.metricsResult.observe(this, Observer { response ->
-            if (response.error == true) {
-                showToast("Submit Metrics Failed: ${response.message}")
-            } else {
-                showToast("Submit Metrics Successful: ${response.message}")
-                finish()
+        viewModel.metricsState.observe(this) { response ->
+            response?.let {
+                if (it.error!!) {
+                    Toast.makeText(this, it.message ?: "Metrics saved successfully", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(this, it.message ?: "Failed to save metrics", Toast.LENGTH_SHORT).show()
+                }
             }
-        })
-    }
-
-    private fun validateInput(age: Int, height: Float, weight: Float, fats: Float): Boolean {
-        return when {
-            age <= 0 -> {
-                showToast("Age tidak boleh kosong")
-                false
-            }
-
-            height <= 0f -> {
-                showToast("Height tidak boleh kosong")
-                false
-            }
-
-            weight <= 0f -> {
-                showToast("Weight tidak boleh kosong")
-                false
-            }
-
-            fats <= 0f -> {
-                showToast("fats tidak boleh kosong")
-                false
-            }
-
-            else -> true
         }
     }
+
+
 
     private fun showToast(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()

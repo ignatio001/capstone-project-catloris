@@ -4,29 +4,22 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.bangkit.catloris.api.ApiConfig
 import com.bangkit.catloris.responses.MetricsResponse
 import kotlinx.coroutines.launch
 
-class MetricsViewModel : ViewModel() {
-    private val metricsRepository = MetricsRepository(ApiConfig.getApiService())
+class MetricsViewModel(private val apiService: MetricsRepository) : ViewModel() {
 
-    private val _metricsResult = MutableLiveData<MetricsResponse>()
-    val metricsResult: LiveData<MetricsResponse> = _metricsResult
+    private val _metricsState = MutableLiveData<MetricsResponse>()
+    val metricsState: LiveData<MetricsResponse> get() = _metricsState
 
-    private val _isLoading = MutableLiveData<Boolean>()
-    val isLoading: LiveData<Boolean> = _isLoading
-
-    fun metricsUser(age: Int, height: Float, weight: Float, fats: Float) {
-        _isLoading.value = true
+    fun sendMetrics(userId: Int, age: Int, height: Float, weight: Float, fats: Float) {
         viewModelScope.launch {
             try {
-                val response = metricsRepository.metricsUser(age, height, weight, fats)
-                _metricsResult.value = response
+                val response = apiService.sendMetrics(userId, age, height, weight, fats)
+                _metricsState.postValue(response)
             } catch (e: Exception) {
-                _metricsResult.value = MetricsResponse(error = true, message = e.message)
-            } finally {
-                _isLoading.value = false
+                // Handle exceptions (e.g., network issues)
+                _metricsState.postValue(MetricsResponse(error = true, message = e.message))
             }
         }
     }

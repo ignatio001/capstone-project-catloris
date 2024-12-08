@@ -32,7 +32,7 @@
     <string name="register_email">Email</string>
     <string name="register_phone">Phone Number</string>
     <string name="register_pass">Password</string>
-    <string name="register_gender">Gender</string>
+    <string name="register_gender">Fill Male or Female</string>
 
     <!-- Dashboard -->
     <string name="bg_dashboard_cat">Icon Cat Background</string>
