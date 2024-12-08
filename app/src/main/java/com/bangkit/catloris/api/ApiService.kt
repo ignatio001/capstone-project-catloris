@@ -1,5 +1,6 @@
 package com.bangkit.catloris.api
 
+import com.bangkit.catloris.responses.LoginResponse
 import com.bangkit.catloris.responses.MetricsResponse
 import com.bangkit.catloris.responses.RegisterResponse
 import retrofit2.http.Field
@@ -14,7 +15,7 @@ interface ApiService {
         @Field("fullname") fullname: String,
         @Field("email") email: String,
         @Field("password") password: String,
-        @Field("contact") contact : String,
+        @Field("contact") contact: String,
         @Field("gender") gender: String
     ): RegisterResponse
 
@@ -27,4 +28,12 @@ interface ApiService {
         @Field("weight") weight: Float,
         @Field("fats") fats: Float
     ): MetricsResponse
+
+    @FormUrlEncoded
+    @POST("auth/login")
+    suspend fun login(
+        @Field("email") email: String,
+        @Field("password") password: String
+    ): LoginResponse
+
 }

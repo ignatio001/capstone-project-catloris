@@ -3,18 +3,27 @@ package com.bangkit.catloris.ui.auth
 import android.animation.ObjectAnimator
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.bangkit.catloris.MainActivity
 import com.bangkit.catloris.R
 import com.bangkit.catloris.databinding.ActivityLoginBinding
+import com.bangkit.catloris.helper.LoginRepository
+import com.bangkit.catloris.helper.LoginViewModel
+import com.bangkit.catloris.helper.LoginViewModelFactory
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
+    private val loginViewModel: LoginViewModel by viewModels {
+        LoginViewModelFactory(LoginRepository())
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,10 +31,21 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.hide()
 
+        setupActions()
+        observeViewModel()
+        playAnimation()
+    }
+
+    private fun setupActions() {
         binding.loginButton.setOnClickListener {
-            val loginIntent = Intent(this@LoginActivity, MainActivity::class.java)
-            startActivity(loginIntent)
-            this.finish()
+            val email = binding.loginEmail.text.toString().trim()
+            val password = binding.passLogin.text.toString().trim()
+
+            if (email.isEmpty() || password.isEmpty()) {
+                Toast.makeText(this, "Tolong isi data anda", Toast.LENGTH_SHORT).show()
+            } else {
+                login(email, password)
+            }
         }
 
         binding.registerBtn.setOnClickListener {
@@ -33,8 +53,44 @@ class LoginActivity : AppCompatActivity() {
             startActivity(regIntent)
             this.finish()
         }
+    }
 
-        playAnimation()
+    private fun observeViewModel() {
+        loginViewModel.loginResponse.observe(this) { response ->
+            response?.let {
+                if (!it.error!!) {
+                    saveToken(it.message.toString())
+                    Toast.makeText(this, "Login Sukses", Toast.LENGTH_SHORT).show()
+                    navigateToMain()
+                } else {
+                    Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+
+        loginViewModel.errorState.observe(this) { errorMessage ->
+            errorMessage?.let {
+                Log.e("LoginActivity", it)
+                Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private fun login(email: String, password: String) {
+        loginViewModel.login(email, password)
+    }
+
+    private fun saveToken(token: String) {
+        val sharedPreferences = getSharedPreferences("user_prefs", MODE_PRIVATE)
+        sharedPreferences.edit()
+            .putString("access_token", token)
+            .apply()
+    }
+
+    private fun navigateToMain() {
+        val mainIntent = Intent(this, MainActivity::class.java)
+        startActivity(mainIntent)
+        finish()
     }
 
     private fun playAnimation() {
