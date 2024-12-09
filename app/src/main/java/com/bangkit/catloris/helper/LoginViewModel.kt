@@ -18,6 +18,7 @@ class LoginViewModel(private val repository: LoginRepository) : ViewModel() {
     fun login(email: String, password: String) {
         viewModelScope.launch {
             try {
+
                 val response = repository.login(email, password)
                 _loginState.value = response
                 _errorState.value = null

@@ -6,13 +6,9 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.bangkit.catloris.MainActivity
-import com.bangkit.catloris.R
 import com.bangkit.catloris.databinding.ActivityLoginBinding
 import com.bangkit.catloris.helper.LoginRepository
 import com.bangkit.catloris.helper.LoginViewModel
@@ -42,9 +38,9 @@ class LoginActivity : AppCompatActivity() {
             val password = binding.passLogin.text.toString().trim()
 
             if (email.isEmpty() || password.isEmpty()) {
-                Toast.makeText(this, "Tolong isi data anda", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Tolong isi data Anda", Toast.LENGTH_SHORT).show()
             } else {
-                login(email, password)
+                login(email, password) // Mengirim data login
             }
         }
 
@@ -59,7 +55,7 @@ class LoginActivity : AppCompatActivity() {
         loginViewModel.loginResponse.observe(this) { response ->
             response?.let {
                 if (!it.error!!) {
-                    saveToken(it.message.toString())
+                    saveToken(it.data?.accessToken ?: "")
                     Toast.makeText(this, "Login Sukses", Toast.LENGTH_SHORT).show()
                     navigateToMain()
                 } else {

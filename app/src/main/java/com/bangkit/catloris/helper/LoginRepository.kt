@@ -11,7 +11,8 @@ class LoginRepository {
 
     suspend fun login(email: String, password: String): LoginResponse {
         return try {
-            apiService.login(email, password)
+            val loginRequest = LoginRequest(email, password)
+            apiService.login(loginRequest)
         } catch (@SuppressLint("NewApi") e: HttpException) {
             throw Exception("Server error: ${e.message}")
         } catch (e: IOException) {

@@ -1,6 +1,7 @@
 package com.bangkit.catloris.ui.dashboard
 
 import android.animation.ObjectAnimator
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -23,6 +24,7 @@ class DashboardFragment : Fragment() {
     private var _binding: FragmentDashboardBinding? = null
     private val binding get() = _binding!!
 
+    @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -31,6 +33,11 @@ class DashboardFragment : Fragment() {
 
         _binding = FragmentDashboardBinding.inflate(inflater, container, false)
         val root: View = binding.root
+
+        val username = activity?.intent?.getStringExtra("username") ?: "User"
+
+        binding.dashboardUsername.text = "welcome, $username"
+
 
         binding.dashboardLogout.setOnClickListener {
             val logoutIntent = Intent(requireContext(), LoginActivity::class.java)

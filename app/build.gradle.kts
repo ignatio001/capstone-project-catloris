@@ -55,6 +55,7 @@ dependencies {
 
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
+    implementation (libs.gson)
     implementation(libs.logging.interceptor)
 
     implementation (libs.kotlinx.coroutines.android)
@@ -67,6 +68,5 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-
 
 }
