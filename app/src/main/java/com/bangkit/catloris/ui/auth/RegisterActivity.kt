@@ -11,7 +11,6 @@ import com.bangkit.catloris.helper.RegisterViewModelFactory
 import com.bangkit.catloris.helper.RegisterRepository
 import com.bangkit.catloris.helper.RegisterRequest
 import com.bangkit.catloris.helper.RegisterViewModel
-import kotlin.random.Random
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
@@ -63,6 +62,11 @@ class RegisterActivity : AppCompatActivity() {
             )
 
             viewModel.registerUser(request)
+
+            val metricsIntent = Intent(this@RegisterActivity, ParameterUserActivity::class.java)
+            metricsIntent.putExtra("user_id", userId)
+            startActivity(metricsIntent)
+            finish()
         }
     }
 
@@ -70,10 +74,8 @@ class RegisterActivity : AppCompatActivity() {
         viewModel.registerResult.observe(this) { response ->
             if (response.error == false) {
                 Toast.makeText(this, response.message, Toast.LENGTH_SHORT).show()
-                startActivity(Intent(this, LoginActivity::class.java))
-                finish()
             } else {
-                Toast.makeText(this, response.message ?: "Register Gagal", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, response.message ?: "Register Failed", Toast.LENGTH_SHORT).show()
             }
         }
 

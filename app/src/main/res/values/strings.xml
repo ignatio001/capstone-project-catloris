@@ -63,6 +63,13 @@
     <string name="scan_clear">CLEAR PICTURE</string>
     <string name="scan_result_title">ANALYZE RESULT</string>
     <string name="scan_result_detect">Result</string>
+    <string name="scan_result_calories">Calories :</string>
+    <string name="scan_result_protein">Protein :</string>
+    <string name="scan_result_fats">Fats :</string>
+    <string name="scan_result_carbo">Carbohydrate :</string>
+    <string name="scan_result_all">--</string>
+    <string name="empty_image_warning">Entry Your Pict First</string>
+
 
     <!-- Challenge -->
     <string name="challenges_scroll">scroll challenges</string>

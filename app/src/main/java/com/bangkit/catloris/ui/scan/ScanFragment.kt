@@ -8,11 +8,22 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.lifecycle.lifecycleScope
 import com.bangkit.catloris.R
+import com.bangkit.catloris.api.ApiConfig
 import com.bangkit.catloris.databinding.FragmentScanBinding
+import com.bangkit.catloris.responses.ErrorResponse
 import com.bangkit.catloris.utils.getImageUri
+import com.bangkit.catloris.utils.uriToFile
+import com.google.gson.Gson
+import kotlinx.coroutines.launch
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import retrofit2.HttpException
 
 class ScanFragment : Fragment() {
 
@@ -40,10 +51,47 @@ class ScanFragment : Fragment() {
 
         binding.galleryButton.setOnClickListener { startGallery() }
         binding.cameraButton.setOnClickListener { startCamera() }
+        binding.analyzeButton.setOnClickListener { uploadImage() }
 
         binding.clearPictButton.setOnClickListener { clearPicture() }
 
         return binding.root
+    }
+
+    private fun uploadImage() {
+        currentImageUri?.let { uri ->
+            val imageFile = uriToFile(uri, requireContext())
+            Log.d("Image Classification File", "showImageL: ${imageFile.path}")
+
+            val requestImageFile = imageFile.asRequestBody("image/jpeg".toMediaType())
+            val multipartBody = MultipartBody.Part.createFormData(
+                "image",
+                imageFile.name,
+                requestImageFile
+            )
+
+            lifecycleScope.launch {
+                try {
+                    val apiService = ApiConfig.getApiService()
+                    val successResponse = apiService.uploadImage(multipartBody)
+                    with(successResponse.nutrisi){
+                        binding.analyzeResult.text = this!!.nama
+                        binding.scanResultCalories.text = this.kalori.toString()
+                        binding.scanResultCarbo.text = this.karbohidrat.toString()
+                        binding.scanResultProtein.text = this.protein.toString()
+                        binding.scanResultFats.text = this.lemak.toString()
+                    }
+                } catch (e: HttpException) {
+                    val errorBody = e.response()?.errorBody()?.string()
+                    val errorResponse = Gson().fromJson(errorBody, ErrorResponse::class.java)
+                    showToast(errorResponse.detail.toString())
+                }
+            }
+        } ?: showToast(getString(R.string.empty_image_warning))
+    }
+
+    private fun showToast(message: String) {
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
 
     private fun clearPicture() {
@@ -86,4 +134,9 @@ class ScanFragment : Fragment() {
             binding.photoAnalyze.setImageURI(it)
         }
     }
+
+
+
+
+
 }
