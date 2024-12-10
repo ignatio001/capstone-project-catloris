@@ -9,6 +9,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.bangkit.catloris.databinding.ActivityMainBinding
+import com.bangkit.catloris.ui.dashboard.DashboardFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -25,9 +26,18 @@ class MainActivity : AppCompatActivity() {
         mediaPlayer.isLooping = true
         mediaPlayer.start()
 
+        val emailUser = intent.getStringExtra("email_user")
+
+        //Lanjut besok
+        val dashboardFragment = DashboardFragment()
+        val bundle = Bundle()
+
+
         supportActionBar?.hide()
 
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
+
+
 
         val navView = findViewById<BottomNavigationView>(R.id.nav_view)
         // Passing each menu ID as a set of Ids because each

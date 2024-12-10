@@ -42,6 +42,11 @@ class LoginActivity : AppCompatActivity() {
             } else {
                 login(email, password) // Mengirim data login
             }
+
+            val mainIntent = Intent(this, MainActivity::class.java)
+            mainIntent.putExtra("email_user", email)
+            startActivity(mainIntent)
+            finish()
         }
 
         binding.registerBtn.setOnClickListener {
@@ -57,7 +62,7 @@ class LoginActivity : AppCompatActivity() {
                 if (!it.error!!) {
                     saveToken(it.data?.accessToken ?: "")
                     Toast.makeText(this, "Login Sukses", Toast.LENGTH_SHORT).show()
-                    navigateToMain()
+
                 } else {
                     Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
                 }
@@ -83,11 +88,6 @@ class LoginActivity : AppCompatActivity() {
             .apply()
     }
 
-    private fun navigateToMain() {
-        val mainIntent = Intent(this, MainActivity::class.java)
-        startActivity(mainIntent)
-        finish()
-    }
 
     private fun playAnimation() {
         ObjectAnimator.ofFloat(binding.loginImg, View.TRANSLATION_X, -30f, 30f).apply {
