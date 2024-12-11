@@ -1,5 +1,6 @@
 package com.bangkit.catloris.ui.profile
 
+import android.content.Context.MODE_PRIVATE
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -26,6 +27,10 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
 
         binding.editPictureUser.setOnClickListener { startGallery() }
+
+        //INI untuk data sinkronise ke API
+        val sharedPreferences = requireActivity().getSharedPreferences("email_user", MODE_PRIVATE)
+        val emailUser = sharedPreferences.getString("email_user", null)
 
         binding.editPictureUser.visibility = View.GONE
         binding.saveProfileButton.visibility = View.GONE

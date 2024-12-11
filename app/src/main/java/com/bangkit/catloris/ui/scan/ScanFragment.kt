@@ -1,5 +1,6 @@
 package com.bangkit.catloris.ui.scan
 
+import android.content.Context.MODE_PRIVATE
 import android.net.Uri
 import androidx.fragment.app.viewModels
 import android.os.Bundle
@@ -48,6 +49,10 @@ class ScanFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentScanBinding.inflate(inflater, container, false)
+
+        //INI untuk data sinkronise ke API
+        val sharedPreferences = requireActivity().getSharedPreferences("email_user", MODE_PRIVATE)
+        val emailUser = sharedPreferences.getString("email_user", null)
 
         binding.galleryButton.setOnClickListener { startGallery() }
         binding.cameraButton.setOnClickListener { startCamera() }

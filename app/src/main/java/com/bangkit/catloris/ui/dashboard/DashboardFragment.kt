@@ -35,14 +35,9 @@ class DashboardFragment : Fragment() {
 
         _binding = FragmentDashboardBinding.inflate(inflater, container, false)
 
+        // ini data untuk synchronize ke API
         val sharedPreferences = requireActivity().getSharedPreferences("email_user", MODE_PRIVATE)
         val emailUser = sharedPreferences.getString("email_user", null)
-
-        if (emailUser != null) {
-            binding.dashboardUsername.text = emailUser
-        } else {
-            Log.e("DashboardFragment", "email_user tidak ditemukan di SharedPreferences")
-        }
 
 
         binding.dashboardLogout.setOnClickListener {
