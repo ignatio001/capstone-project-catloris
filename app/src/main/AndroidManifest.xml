@@ -39,9 +39,6 @@
             android:name=".ui.challenge.ChallengesDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.challenge.ChallengePageActivity"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity"
             android:exported="false" />
         <activity

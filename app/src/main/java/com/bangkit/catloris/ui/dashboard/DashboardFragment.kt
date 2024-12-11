@@ -2,8 +2,10 @@ package com.bangkit.catloris.ui.dashboard
 
 import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
+import android.content.Context.MODE_PRIVATE
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,11 +34,15 @@ class DashboardFragment : Fragment() {
     ): View {
 
         _binding = FragmentDashboardBinding.inflate(inflater, container, false)
-        val root: View = binding.root
 
-        val username = activity?.intent?.getStringExtra("username") ?: "User"
+        val sharedPreferences = requireActivity().getSharedPreferences("email_user", MODE_PRIVATE)
+        val emailUser = sharedPreferences.getString("email_user", null)
 
-        binding.dashboardUsername.text = "welcome, $username"
+        if (emailUser != null) {
+            binding.dashboardUsername.text = emailUser
+        } else {
+            Log.e("DashboardFragment", "email_user tidak ditemukan di SharedPreferences")
+        }
 
 
         binding.dashboardLogout.setOnClickListener {
@@ -65,7 +71,7 @@ class DashboardFragment : Fragment() {
         playAnimation()
 
 
-        return root
+        return binding.root
     }
 
     private fun playAnimation() {

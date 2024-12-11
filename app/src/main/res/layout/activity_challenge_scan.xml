@@ -172,7 +172,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/_ch_scan_result_fats"
+                android:id="@+id/ch_scan_result_fats"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:paddingStart="10dp"

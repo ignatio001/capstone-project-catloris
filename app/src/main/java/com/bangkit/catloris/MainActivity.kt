@@ -9,7 +9,11 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.bangkit.catloris.databinding.ActivityMainBinding
+import com.bangkit.catloris.ui.challenge.ChallengeFragment
+import com.bangkit.catloris.ui.challenge.ChallengeScan
 import com.bangkit.catloris.ui.dashboard.DashboardFragment
+import com.bangkit.catloris.ui.profile.ProfileFragment
+import com.bangkit.catloris.ui.scan.ScanFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,19 +30,20 @@ class MainActivity : AppCompatActivity() {
         mediaPlayer.isLooping = true
         mediaPlayer.start()
 
-        val emailUser = intent.getStringExtra("email_user")
+        val sharedPreferences = getSharedPreferences("email_user", MODE_PRIVATE)
+        val emailUser = sharedPreferences.getString("email_user", null)
+        sharedPreferences.edit()
+            .putString("email_user", emailUser)
+            .apply()
 
-        //Lanjut besok
         val dashboardFragment = DashboardFragment()
         val bundle = Bundle()
-
+        bundle.putString("email_user", emailUser)
+        dashboardFragment.arguments = bundle
 
         supportActionBar?.hide()
 
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
-
-
-
         val navView = findViewById<BottomNavigationView>(R.id.nav_view)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -58,7 +63,7 @@ class MainActivity : AppCompatActivity() {
         binding.navView.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.navigation_dashboard -> {
-                    navController.navigate(R.id.navigation_dashboard)
+                    navController.navigate(R.id.navigation_dashboard, bundle)
                     true
                 }
 
