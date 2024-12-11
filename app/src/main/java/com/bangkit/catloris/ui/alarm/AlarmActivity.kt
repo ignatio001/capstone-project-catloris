@@ -1,15 +1,12 @@
-package com.bangkit.catloris.ui.Alarm
+package com.bangkit.catloris.ui.alarm
 
 import android.Manifest
 import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
 import com.bangkit.catloris.R
 import com.bangkit.catloris.databinding.ActivityAlarmBinding

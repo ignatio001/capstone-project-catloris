@@ -5,7 +5,6 @@ import android.annotation.SuppressLint
 import android.content.Context.MODE_PRIVATE
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,7 +14,7 @@ import com.bangkit.catloris.R
 import com.bangkit.catloris.databinding.FragmentDashboardBinding
 import com.bangkit.catloris.helper.DashboardAdapter
 import com.bangkit.catloris.helper.DashboardItem
-import com.bangkit.catloris.ui.Alarm.AlarmActivity
+import com.bangkit.catloris.ui.alarm.AlarmActivity
 import com.bangkit.catloris.ui.auth.LoginActivity
 import com.bangkit.catloris.ui.sidefeatures.BodyMassActivity
 import com.bangkit.catloris.ui.sidefeatures.FoodHistoryActivity
@@ -39,6 +38,8 @@ class DashboardFragment : Fragment() {
         val sharedPreferences = requireActivity().getSharedPreferences("email_user", MODE_PRIVATE)
         val emailUser = sharedPreferences.getString("email_user", null)
 
+
+        binding.dashboardUsername.text = emailUser
 
         binding.dashboardLogout.setOnClickListener {
             val logoutIntent = Intent(requireContext(), LoginActivity::class.java)

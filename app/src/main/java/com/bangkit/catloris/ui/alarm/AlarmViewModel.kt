@@ -1,4 +1,4 @@
-package com.bangkit.catloris.ui.Alarm
+package com.bangkit.catloris.ui.alarm
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel

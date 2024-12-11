@@ -24,7 +24,7 @@
             android:name=".ui.challenge.ChallengeScan"
             android:exported="false" />
         <activity
-            android:name=".ui.Alarm.AlarmActivity"
+            android:name=".ui.alarm.AlarmActivity"
             android:exported="false" />
         <activity
             android:name=".ui.auth.ParameterUserActivity"
@@ -91,7 +91,7 @@
         </service>
 
         <receiver
-            android:name=".ui.Alarm.AlarmReceiver"
+            android:name=".ui.alarm.AlarmReceiver"
             android:enabled="true"
             android:exported="false" />
     </application>

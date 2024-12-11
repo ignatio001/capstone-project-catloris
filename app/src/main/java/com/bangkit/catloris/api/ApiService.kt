@@ -8,6 +8,7 @@ import com.bangkit.catloris.responses.MetricsResponse
 import com.bangkit.catloris.responses.PredictResponse
 import com.bangkit.catloris.responses.ProfileResponse
 import com.bangkit.catloris.responses.RegisterResponse
+import com.bangkit.catloris.responses.UserProfileResponse
 import okhttp3.MultipartBody
 import retrofit2.Response
 import retrofit2.http.Field
@@ -54,8 +55,8 @@ interface ApiService {
 
     @GET("/auth/profile")
     suspend fun getUserProfile(
-        @Header("Authorization") authorization: String
-    ): Response<ProfileResponse>
+        @Header("Authorization") token: String
+    ): Response<UserProfileResponse>
 
     @Multipart
     @POST("/predict")

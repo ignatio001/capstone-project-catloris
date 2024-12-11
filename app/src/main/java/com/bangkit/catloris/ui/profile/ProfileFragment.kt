@@ -8,10 +8,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.bangkit.catloris.R
+import com.bangkit.catloris.api.ApiConfig
 import com.bangkit.catloris.databinding.FragmentProfileBinding
+import com.bangkit.catloris.helper.ProfileRepository
+import com.bangkit.catloris.helper.ProfileViewModelFactory
 
 
 class ProfileFragment : Fragment(R.layout.fragment_profile) {
@@ -19,6 +25,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
     private var currentImageUri: Uri? = null
+    private lateinit var viewModel: ProfileViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,11 +33,44 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     ): View? {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
 
-        binding.editPictureUser.setOnClickListener { startGallery() }
+
+        val apiService = ApiConfig.getApiService()
+        val profileRepository = ProfileRepository(apiService)
+
+        viewModel = ViewModelProvider(
+            this,
+            ProfileViewModelFactory(profileRepository)
+        ).get(ProfileViewModel::class.java)
 
         //INI untuk data sinkronise ke API
         val sharedPreferences = requireActivity().getSharedPreferences("email_user", MODE_PRIVATE)
         val emailUser = sharedPreferences.getString("email_user", null)
+        val accessToken = sharedPreferences.getString("access_Token", null)
+
+        accessToken?.let {
+            viewModel.fetchUser(it)
+        }
+
+        viewModel.userProfile.observe(viewLifecycleOwner, Observer { response ->
+            response.data?.let { userData ->
+                binding.fullName.setText(userData.fullname)
+                binding.phoneNumber.setText(userData.contact)
+                binding.email.setText(userData.email)
+            }
+        })
+
+        viewModel.errorMessage.observe(viewLifecycleOwner, Observer { errorMessage ->
+            errorMessage?.let {
+                showToast(it)
+            }
+        })
+
+        binding.editPictureUser.setOnClickListener { startGallery() }
+
+        // Logika untuk mengedit dan menyimpan profil
+        setupEditProfileButtons()
+
+
 
         binding.editPictureUser.visibility = View.GONE
         binding.saveProfileButton.visibility = View.GONE
@@ -63,8 +103,6 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             binding.email.isFocusable = false
         }
 
-
-
         binding.editPictureUser.visibility = View.GONE
         binding.saveProfileButton.visibility = View.GONE
         binding.editProfileButton.visibility = View.VISIBLE
@@ -95,11 +133,24 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             binding.email.isFocusableInTouchMode = false
             binding.email.isFocusable = false
         }
-
-
 
 
         return binding.root
+    }
+
+    private fun setupEditProfileButtons() {
+        binding.editProfileButton.setOnClickListener {
+            binding.editPictureUser.visibility = View.VISIBLE
+            binding.saveProfileButton.visibility = View.VISIBLE
+            binding.editProfileButton.visibility = View.GONE
+            setEditTextFocusable(true)
+        }
+    }
+
+    private fun setEditTextFocusable(isFocusable: Boolean) {
+        binding.fullName.isFocusableInTouchMode = isFocusable
+        binding.phoneNumber.isFocusableInTouchMode = isFocusable
+        binding.email.isFocusableInTouchMode = isFocusable
     }
 
     private fun startGallery() {
@@ -122,6 +173,10 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             Log.d("Image URI", "showImage: $it")
             binding.dashProfilePict.setImageURI(it)
         }
+    }
+
+    private fun showToast(message: String) {
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
 
     override fun onDestroyView() {
