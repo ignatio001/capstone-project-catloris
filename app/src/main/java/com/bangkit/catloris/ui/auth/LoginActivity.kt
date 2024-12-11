@@ -30,18 +30,6 @@ class LoginActivity : AppCompatActivity() {
         setupActions()
         observeViewModel()
         playAnimation()
-
-        binding.forgotPassLogin.setOnClickListener {
-            val email = binding.loginEmail.text.toString()
-
-            val sharedPreferences = getSharedPreferences("email_user", MODE_PRIVATE)
-            sharedPreferences.edit()
-                .putString("email_user", email)
-                .apply()
-
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-        }
     }
 
     private fun setupActions() {
@@ -54,6 +42,11 @@ class LoginActivity : AppCompatActivity() {
             } else {
                 login(email, password) // Mengirim data login
             }
+
+            val sharedPreferences = getSharedPreferences("email_user", MODE_PRIVATE)
+            sharedPreferences.edit()
+                .putString("email_user", email)
+                .apply()
 
             val mainIntent = Intent(this, MainActivity::class.java)
             mainIntent.putExtra("email_user", email)
