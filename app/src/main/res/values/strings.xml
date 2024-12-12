@@ -180,6 +180,8 @@
     <string name="sarapan">Breakfast Time</string>
     <string name="set_alarm_button">SET</string>
     <string name="set_alarm_button_profile">Set Alarm</string>
+    <string name="voice_search">Voice Search</string>
+    <string name="search_article">Search Article</string>
 
 
 </resources>

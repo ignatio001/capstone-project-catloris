@@ -1,5 +1,6 @@
 package com.bangkit.catloris.helper
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -11,7 +12,7 @@ import com.bangkit.catloris.databinding.ListItemArticleBinding
 import com.bangkit.catloris.responses.ArticlesItem
 import com.bangkit.catloris.utils.loadImage
 
-class ArticleAdapter(private val context: Context, private val articleList: List<ArticlesItem>) :
+class ArticleAdapter(private val context: Context, private var articleList: List<ArticlesItem>) :
     RecyclerView.Adapter<ArticleAdapter.ArticleViewHolder>() {
 
     class ArticleViewHolder(val binding: ListItemArticleBinding) : RecyclerView.ViewHolder(binding.root)
@@ -43,4 +44,12 @@ class ArticleAdapter(private val context: Context, private val articleList: List
             }
         }
     }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun updateArticles(newList: List<ArticlesItem>) {
+        (articleList as ArrayList).clear()
+        (articleList as ArrayList).addAll(newList)
+        notifyDataSetChanged()
+    }
+
 }

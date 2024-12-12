@@ -4,12 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg_app"
     tools:context=".ui.article.ArticleFragment">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView2"
         android:layout_width="match_parent"
-        android:layout_height="165dp"
+        android:layout_height="195dp"
         app:cardElevation="10dp"
         app:cardCornerRadius="12dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -24,7 +25,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="20dp"
+                android:layout_margin="10dp"
                 android:contentDescription="@string/title_article_description"
                 android:paddingBottom="16dp"
                 android:text="@string/title_article"
@@ -54,16 +55,46 @@
                     android:textSize="12sp" />
 
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <SearchView
+                    android:id="@+id/article_search"
+                    android:layout_width="350dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:iconifiedByDefault="false"
+                    android:queryHint="@string/search_article"
+                    android:queryBackground="@drawable/tranparent"
+                    android:background="@drawable/search_bar_custom" />
+
+                <ImageView
+                    android:id="@+id/voice_search_btn"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_vertical"
+                    android:contentDescription="@string/voice_search"
+                    android:src="@drawable/ic_voice"/>
+
+            </LinearLayout>
+
+
+
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
+
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/article_recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="16dp"
-        android:layout_marginTop="165dp"
+        android:layout_marginTop="195dp"
+        android:layout_marginBottom="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

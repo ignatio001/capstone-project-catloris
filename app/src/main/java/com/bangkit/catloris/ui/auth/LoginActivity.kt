@@ -40,7 +40,7 @@ class LoginActivity : AppCompatActivity() {
             if (email.isEmpty() || password.isEmpty()) {
                 Toast.makeText(this, "Tolong isi data Anda", Toast.LENGTH_SHORT).show()
             } else {
-                login(email, password) // Mengirim data login
+                login(email, password)
             }
 
             val sharedPreferences = getSharedPreferences("email_user", MODE_PRIVATE)
