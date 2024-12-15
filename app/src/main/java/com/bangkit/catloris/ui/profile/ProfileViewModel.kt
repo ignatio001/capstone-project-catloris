@@ -1,5 +1,8 @@
 package com.bangkit.catloris.ui.profile
 
+import android.annotation.SuppressLint
+import android.content.Context
+import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -13,24 +16,34 @@ import retrofit2.Response
 
 class ProfileViewModel(private val repository: ProfileRepository) : ViewModel() {
 
-    private val _userProfile = MutableLiveData<UserProfileResponse>()
-    val userProfile: LiveData<UserProfileResponse> get() = _userProfile
+    // LiveData untuk menyimpan data pengguna
+    private val _fullName = MutableLiveData<String>()
+    val fullName: LiveData<String> get() = _fullName
 
-    private val _errorMessage = MutableLiveData<String>()
-    val errorMessage: LiveData<String> get() = _errorMessage
+    private val _phoneNumber = MutableLiveData<String>()
+    val phoneNumber: LiveData<String> get() = _phoneNumber
 
-    fun fetchUser(token: String) {
-        viewModelScope.launch {
-            try {
-                val response: Response<UserProfileResponse> = repository.getUserProfile(token)
-                if (response.isSuccessful) {
-                    _userProfile.value = response.body()
-                } else {
-                    _errorMessage.value = response.message()
-                }
-            } catch (e: Exception) {
-                _errorMessage.value = e.message
-            }
-        }
+    private val _email = MutableLiveData<String>()
+    val email: LiveData<String> get() = _email
+
+    private val _profileImageUri = MutableLiveData<Uri>()
+    val profileImageUri: LiveData<Uri> get() = _profileImageUri
+
+    // Mengambil data pengguna dari SharedPreferences
+    fun loadUserProfile() {
+        _fullName.postValue(repository.getUserFullName() ?: "")
+        _phoneNumber.postValue(repository.getUserPhoneNumber() ?: "")
+        _email.postValue(repository.getEmailUser() ?: "Guest")
+        _profileImageUri.postValue(repository.getUserImageUri())
+    }
+
+    // Menyimpan data pengguna ke SharedPreferences
+    @SuppressLint("NullSafeMutableLiveData")
+    fun saveUserProfile(fullName: String, phoneNumber: String, email: String, imageUri: Uri?) {
+        repository.saveUserProfile(fullName, phoneNumber, email, imageUri)
+        _fullName.postValue(fullName)
+        _phoneNumber.postValue(phoneNumber)
+        _email.postValue(email)
+        _profileImageUri.postValue(imageUri)
     }
 }

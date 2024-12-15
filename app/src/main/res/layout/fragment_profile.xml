@@ -27,8 +27,21 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
         android:src="@drawable/dummy_img"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.54"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_profile_page" />
+
+    <ImageView
+        android:id="@+id/edit_picture_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:background="@drawable/tranparent"
+        android:contentDescription="@string/edit_profile_button"
+        android:src="@drawable/ic_picture_edit_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title_profile_page" />
@@ -53,17 +66,16 @@
         android:layout_width="130dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:textAlignment="center"
         android:layout_marginTop="5dp"
+        android:backgroundTint="@color/color_4"
         android:text="@string/save_profil_btn"
+        android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="12sp"
         android:textStyle="bold"
-        android:backgroundTint="@color/color_4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profile_name" />
-
 
 
     <Button
@@ -80,36 +92,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profile_name" />
 
-    <ImageView
-        android:id="@+id/edit_picture_user"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
-        android:background="@drawable/tranparent"
-        android:contentDescription="@string/edit_profile_button"
-        android:src="@drawable/ic_picture_edit_24"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_profile_page" />
-
 
     <EditText
         android:id="@+id/full_name"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_gravity="center_horizontal"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="80dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginStart="20dp"
         android:background="@drawable/custom_input"
         android:drawableEnd="@drawable/ic_person_gray"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
         android:hint="@string/full_name"
         android:inputType="textEmailAddress"
         android:paddingStart="12dp"
         android:paddingEnd="12dp"
         android:textSize="14sp"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profile_name" />
@@ -122,13 +122,13 @@
         android:layout_margin="20dp"
         android:background="@drawable/custom_input"
         android:drawableEnd="@drawable/ic_phone_grey_24"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
         android:hint="@string/Phone_Number"
         android:inputType="phone"
         android:paddingStart="12dp"
         android:paddingEnd="12dp"
         android:textSize="14sp"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/full_name" />
@@ -141,17 +141,15 @@
         android:layout_margin="20dp"
         android:background="@drawable/custom_input"
         android:drawableEnd="@drawable/ic_email_24"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
         android:hint="@string/Email"
         android:paddingStart="12dp"
         android:paddingEnd="12dp"
         android:textSize="14sp"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/phone_number" />
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

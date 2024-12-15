@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bangkit.catloris.R
@@ -20,12 +21,17 @@ import com.bangkit.catloris.helper.ProfileRepository
 import com.bangkit.catloris.helper.ProfileViewModelFactory
 
 
-class ProfileFragment : Fragment(R.layout.fragment_profile) {
+class ProfileFragment  : Fragment(R.layout.fragment_profile) {
 
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
     private var currentImageUri: Uri? = null
     private lateinit var viewModel: ProfileViewModel
+
+    // ViewModel dan LiveData
+    private val profileViewModel: ProfileViewModel by viewModels {
+        ProfileViewModelFactory(ProfileRepository(requireActivity().applicationContext))
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,76 +39,22 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     ): View? {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
 
-
-        val apiService = ApiConfig.getApiService()
-        val profileRepository = ProfileRepository(apiService)
-
-        viewModel = ViewModelProvider(
-            this,
-            ProfileViewModelFactory(profileRepository)
-        ).get(ProfileViewModel::class.java)
-
-        //INI untuk data sinkronise ke API
+        // Mengambil emailUser dari SharedPreferences secara langsung
         val sharedPreferences = requireActivity().getSharedPreferences("email_user", MODE_PRIVATE)
-        val emailUser = sharedPreferences.getString("email_user", null)
-        val accessToken = sharedPreferences.getString("access_Token", null)
+        val emailUser = sharedPreferences.getString("email_user", "Guest") // Default: "Guest"
+        binding.profileName.text = emailUser
 
-        accessToken?.let {
-            viewModel.fetchUser(it)
-        }
+        // Memuat emailUser menggunakan LiveData
+        profileViewModel.loadUserProfile()
 
-        viewModel.userProfile.observe(viewLifecycleOwner, Observer { response ->
-            response.data?.let { userData ->
-                binding.fullName.setText(userData.fullname)
-                binding.phoneNumber.setText(userData.contact)
-                binding.email.setText(userData.email)
-            }
-        })
-
-        viewModel.errorMessage.observe(viewLifecycleOwner, Observer { errorMessage ->
-            errorMessage?.let {
-                showToast(it)
-            }
+        // Mengamati perubahan pada LiveData emailUser
+        profileViewModel.email.observe(viewLifecycleOwner, Observer { email ->
+            binding.profileName.text = email
         })
 
         binding.editPictureUser.setOnClickListener { startGallery() }
-
-        // Logika untuk mengedit dan menyimpan profil
         setupEditProfileButtons()
 
-
-
-        binding.editPictureUser.visibility = View.GONE
-        binding.saveProfileButton.visibility = View.GONE
-        binding.editProfileButton.visibility = View.VISIBLE
-        binding.fullName.isFocusableInTouchMode = false
-        binding.phoneNumber.isFocusableInTouchMode = false
-        binding.email.isFocusableInTouchMode = false
-
-
-        binding.editProfileButton.setOnClickListener {
-            binding.editPictureUser.visibility = View.VISIBLE
-            binding.saveProfileButton.visibility = View.VISIBLE
-            binding.editProfileButton.visibility = View.GONE
-            binding.fullName.isFocusableInTouchMode = true
-            binding.fullName.isFocusable = true
-            binding.phoneNumber.isFocusableInTouchMode = true
-            binding.phoneNumber.isFocusable = true
-            binding.email.isFocusableInTouchMode = true
-            binding.email.isFocusable = true
-        }
-        binding.saveProfileButton.setOnClickListener {
-            binding.editPictureUser.visibility = View.GONE
-            binding.saveProfileButton.visibility = View.GONE
-            binding.editProfileButton.visibility = View.VISIBLE
-            binding.fullName.isFocusableInTouchMode = false
-            binding.fullName.isFocusable = false
-            binding.phoneNumber.isFocusableInTouchMode = false
-            binding.phoneNumber.isFocusable = false
-            binding.email.isFocusableInTouchMode = false
-            binding.email.isFocusable = false
-        }
-
         binding.editPictureUser.visibility = View.GONE
         binding.saveProfileButton.visibility = View.GONE
         binding.editProfileButton.visibility = View.VISIBLE
@@ -133,7 +85,6 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             binding.email.isFocusableInTouchMode = false
             binding.email.isFocusable = false
         }
-
 
         return binding.root
     }
