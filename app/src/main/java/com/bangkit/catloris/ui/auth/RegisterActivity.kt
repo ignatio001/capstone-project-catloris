@@ -18,6 +18,8 @@ class RegisterActivity : AppCompatActivity() {
         RegisterViewModelFactory(RegisterRepository(ApiConfig.getApiService()))
     }
 
+    private var userId: Int = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
@@ -26,6 +28,15 @@ class RegisterActivity : AppCompatActivity() {
 
         setupRegisterButton()
         observeViewModel()
+        backToLogin()
+    }
+
+    private fun backToLogin() {
+        binding.loginBtn.setOnClickListener {
+            val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 
     private fun setupRegisterButton() {
@@ -66,7 +77,6 @@ class RegisterActivity : AppCompatActivity() {
             val metricsIntent = Intent(this@RegisterActivity, ParameterUserActivity::class.java)
             metricsIntent.putExtra("user_id", userId)
             startActivity(metricsIntent)
-            finish()
         }
     }
 

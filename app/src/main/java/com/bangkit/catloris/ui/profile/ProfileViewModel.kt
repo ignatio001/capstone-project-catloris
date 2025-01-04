@@ -16,7 +16,6 @@ import retrofit2.Response
 
 class ProfileViewModel(private val repository: ProfileRepository) : ViewModel() {
 
-    // LiveData untuk menyimpan data pengguna
     private val _fullName = MutableLiveData<String>()
     val fullName: LiveData<String> get() = _fullName
 
@@ -29,7 +28,7 @@ class ProfileViewModel(private val repository: ProfileRepository) : ViewModel() 
     private val _profileImageUri = MutableLiveData<Uri>()
     val profileImageUri: LiveData<Uri> get() = _profileImageUri
 
-    // Mengambil data pengguna dari SharedPreferences
+
     fun loadUserProfile() {
         _fullName.postValue(repository.getUserFullName() ?: "")
         _phoneNumber.postValue(repository.getUserPhoneNumber() ?: "")
@@ -37,7 +36,7 @@ class ProfileViewModel(private val repository: ProfileRepository) : ViewModel() 
         _profileImageUri.postValue(repository.getUserImageUri())
     }
 
-    // Menyimpan data pengguna ke SharedPreferences
+
     @SuppressLint("NullSafeMutableLiveData")
     fun saveUserProfile(fullName: String, phoneNumber: String, email: String, imageUri: Uri?) {
         repository.saveUserProfile(fullName, phoneNumber, email, imageUri)

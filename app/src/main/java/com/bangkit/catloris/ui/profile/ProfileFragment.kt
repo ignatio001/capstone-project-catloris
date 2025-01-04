@@ -28,7 +28,6 @@ class ProfileFragment  : Fragment(R.layout.fragment_profile) {
     private var currentImageUri: Uri? = null
     private lateinit var viewModel: ProfileViewModel
 
-    // ViewModel dan LiveData
     private val profileViewModel: ProfileViewModel by viewModels {
         ProfileViewModelFactory(ProfileRepository(requireActivity().applicationContext))
     }
@@ -39,15 +38,12 @@ class ProfileFragment  : Fragment(R.layout.fragment_profile) {
     ): View? {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
 
-        // Mengambil emailUser dari SharedPreferences secara langsung
         val sharedPreferences = requireActivity().getSharedPreferences("email_user", MODE_PRIVATE)
         val emailUser = sharedPreferences.getString("email_user", "Guest") // Default: "Guest"
         binding.profileName.text = emailUser
 
-        // Memuat emailUser menggunakan LiveData
         profileViewModel.loadUserProfile()
 
-        // Mengamati perubahan pada LiveData emailUser
         profileViewModel.email.observe(viewLifecycleOwner, Observer { email ->
             binding.profileName.text = email
         })

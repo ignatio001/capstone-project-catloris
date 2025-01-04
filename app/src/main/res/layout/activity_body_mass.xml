@@ -51,6 +51,7 @@
             android:elevation="12dp"
             app:cardCornerRadius="12dp"
             app:cardElevation="5dp"
+            android:background="@color/white"
             tools:ignore="MissingConstraints">
 
             <LinearLayout
@@ -66,6 +67,7 @@
                     android:text="@string/weight"
                     android:textAlignment="center"
                     android:textSize="15sp"
+                    android:textColor="@color/new_darker"
                     android:textStyle="bold" />
 
                 <EditText
@@ -74,6 +76,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:hint="@string/hint_score"
+                    android:textColor="@color/new_darker"
                     android:importantForAutofill="no"
                     android:inputType="number"
                     android:textSize="15sp" />
@@ -90,6 +93,7 @@
             android:elevation="12dp"
             app:cardCornerRadius="12dp"
             app:cardElevation="5dp"
+            android:background="@color/white"
             tools:ignore="MissingConstraints">
 
             <LinearLayout
@@ -105,6 +109,7 @@
                     android:text="@string/Age"
                     android:textAlignment="center"
                     android:textSize="15sp"
+                    android:textColor="@color/new_darker"
                     android:textStyle="bold" />
 
                 <EditText
@@ -115,6 +120,7 @@
                     android:hint="@string/hint_score"
                     android:importantForAutofill="no"
                     android:inputType="number"
+                    android:textColor="@color/new_darker"
                     android:minHeight="48dp" />
 
             </LinearLayout>
@@ -132,6 +138,7 @@
         android:elevation="12dp"
         app:cardCornerRadius="12dp"
         app:cardElevation="5dp"
+        android:background="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title_profile_page">
@@ -142,6 +149,7 @@
             android:gravity="center"
             android:text="@string/Height"
             android:textSize="20sp"
+            android:textColor="@color/new_darker"
             android:textStyle="bold" />
 
         <LinearLayout
@@ -159,6 +167,7 @@
                 android:hint="@string/hint_score"
                 android:importantForAutofill="no"
                 android:inputType="number"
+                android:textColor="@color/new_darker"
                 android:minHeight="48dp" />
         </LinearLayout>
 
@@ -172,6 +181,7 @@
         android:elevation="12dp"
         app:cardCornerRadius="12dp"
         app:cardElevation="5dp"
+        android:background="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button"
@@ -184,7 +194,8 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:text="@string/bmi_result"
-            android:textSize="28sp" />
+            android:textColor="@color/new_darker"
+            android:textSize="20sp" />
 
     </androidx.cardview.widget.CardView>
 
@@ -198,6 +209,7 @@
         android:text="@string/calculate"
         android:textSize="28sp"
         android:textStyle="bold"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />

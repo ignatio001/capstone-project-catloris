@@ -110,7 +110,7 @@ class ArticleFragment : Fragment() {
             } catch (e: Exception) {
                 binding.articleProgressbar.visibility = View.GONE
                 e.printStackTrace()
-                Toast.makeText(requireContext(), "Article Gagal di Load", Toast.LENGTH_SHORT)
+                Toast.makeText(requireContext(), "Article Failed to Load", Toast.LENGTH_SHORT)
                     .show()
             }
         }

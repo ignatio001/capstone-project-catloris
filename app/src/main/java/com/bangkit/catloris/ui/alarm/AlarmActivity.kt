@@ -40,10 +40,8 @@ class AlarmActivity : AppCompatActivity(), View.OnClickListener, TimePickerFragm
             requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
         }
 
-        // Inisialisasi ViewModel
         viewModel = ViewModelProvider(this)[AlarmViewModel::class.java]
 
-        // Observasi LiveData dari ViewModel
         viewModel.breakfastTime.observe(this) { time ->
             binding?.tvOnceTime1?.text = if (time.isNotEmpty()) time else "Breakfast Time"
         }
@@ -56,24 +54,20 @@ class AlarmActivity : AppCompatActivity(), View.OnClickListener, TimePickerFragm
             binding?.tvOnceTime3?.text = if (time.isNotEmpty()) time else "Dinner Time"
         }
 
-        // Listener untuk waktu makan
         binding?.btnOnceTime1?.setOnClickListener(this)
         binding?.btnOnceTime2?.setOnClickListener(this)
         binding?.btnOnceTime3?.setOnClickListener(this)
 
-        // Listener untuk alarm
         binding?.btnSetOnceAlarm?.setOnClickListener(this)
         binding?.btnSetRepeatingAlarm?.setOnClickListener(this)
         binding?.btnCancelRepeatingAlarm?.setOnClickListener(this)
 
         alarmReceiver = AlarmReceiver()
 
-        // Memuat data alarm yang disimpan
         loadAlarmData()
     }
 
     private fun loadAlarmData() {
-        // LiveData sudah memuat data saat ViewModel diinisialisasi.
         val breakfastTime = viewModel.breakfastTime.value ?: "No Set Yet"
         val lunchTime = viewModel.lunchTime.value ?: "No Set Yet"
         val dinnerTime = viewModel.dinnerTime.value ?: "No Set Yet"

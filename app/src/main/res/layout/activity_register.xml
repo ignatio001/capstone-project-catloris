@@ -33,6 +33,7 @@
             android:textAlignment="center"
             android:textSize="40sp"
             android:textStyle="bold"
+            android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/register_logo" />
@@ -44,6 +45,7 @@
             android:text="@string/register_title_1"
             android:textAlignment="center"
             android:textSize="14sp"
+            android:textColor="@color/new_darker"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/register_title" />
@@ -60,6 +62,8 @@
             android:drawableEnd="@drawable/ic_person_grey_24"
             android:drawablePadding="12dp"
             android:hint="@string/register_name"
+            android:textColorHint="@color/new_darker"
+            android:textColor="@color/black"
             android:inputType="textPersonName"
             android:paddingStart="12dp"
             android:paddingEnd="12dp"
@@ -80,6 +84,8 @@
             android:drawableEnd="@drawable/ic_email_24"
             android:drawablePadding="12dp"
             android:hint="@string/register_email"
+            android:textColorHint="@color/new_darker"
+            android:textColor="@color/black"
             android:inputType="textEmailAddress"
             android:paddingStart="12dp"
             android:paddingEnd="12dp"
@@ -100,6 +106,8 @@
             android:drawableEnd="@drawable/ic_phone_grey_24"
             android:drawablePadding="12dp"
             android:hint="@string/register_phone"
+            android:textColorHint="@color/new_darker"
+            android:textColor="@color/black"
             android:inputType="phone"
             android:paddingStart="12dp"
             android:paddingEnd="12dp"
@@ -120,6 +128,8 @@
             android:drawableEnd="@drawable/ic_password_24"
             android:drawablePadding="12dp"
             android:hint="@string/register_pass"
+            android:textColorHint="@color/new_darker"
+            android:textColor="@color/black"
             android:inputType="textPassword"
             android:paddingStart="12dp"
             android:paddingEnd="12dp"
@@ -142,6 +152,8 @@
             android:paddingEnd="12dp"
             android:drawableEnd="@drawable/ic_gender_24"
             android:hint="@string/register_gender"
+            android:textColorHint="@color/new_darker"
+            android:textColor="@color/black"
             android:spinnerMode="dropdown"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -158,6 +170,7 @@
             android:backgroundTint="@color/color_4"
             android:text="@string/register_button"
             android:textSize="30sp"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/register_gender" />
@@ -175,6 +188,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="2dp"
+                android:textColor="@color/new_darker"
                 android:text="@string/login_word1" />
 
             <TextView

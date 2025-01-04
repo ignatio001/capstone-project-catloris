@@ -39,12 +39,12 @@
     <string name="dashboard_icon_cat">Cat Icon</string>
     <string name="dashboard_profile_pict">Dash Profile Pict</string>
     <string name="dashboard_welcome">Welcome,</string>
-    <string name="dashboard_name">User Name</string>
+    <string name="dashboard_name">Username</string>
     <string name="dashboard_point">Point : -</string>
     <string name="dashboard_edit_profile">Button Edit Profile</string>
     <string name="dashboard_logout">Button Logout</string>
     <string name="dashboard_title_calories">CALORIES IN YOURS</string>
-    <string name="dashboard_calories_detect">-- KKAL</string>
+    <string name="dashboard_calories_detect">2000 KKAL</string>
     <string name="dashboard_btn_bmi">Body Mass Index</string>
     <string name="dashboard_btn_health_insight">Health Insight &amp; Tips</string>
     <string name="dashboard_btn_food_history">Your Food History</string>
@@ -52,6 +52,8 @@
     <string name="dashboard_see_more">See More</string>
     <string name="dashboard_scroll">Scroll >></string>
     <string name="dashbooard_cat_illustration">Cat Illustration</string>
+    <string name="dashboard_your_fat">Your Fat : </string>
+    <string name="dashboard_dummy_fat">20%</string>
 
     <!-- Scan -->
     <string name="scan_title">ANALYZE THE FOOD</string>
@@ -77,6 +79,7 @@
     <string name="challenge_task">Challenge Task</string>
     <string name="challenge_star">Challenge star</string>
     <string name="challenge_icon">Challenge Icon</string>
+    <string name="challenge_button">Let\'s Go</string>
 
     <!--Article-->
     <string name="title_article">Start Your Healthy\nJourney Today!</string>
@@ -92,11 +95,11 @@
 
 
     <!--Profile-->
-    <string name="user_name">User Name</string>
+    <string name="user_name">Username</string>
     <string name="edit_profile_button">Edit Profile</string>
-    <string name="full_name">What’s your full name?</string>
-    <string name="Phone_Number">What’s your phone number?</string>
-    <string name="Email">What’s your Email?</string>
+    <string name="full_name">Username</string>
+    <string name="Phone_Number">Phone Number</string>
+    <string name="Email">Your Email</string>
     <string name="save">save</string>
     <string name="profile_page">PROFILE</string>
     <string name="save_profil_btn">Save Profile</string>
@@ -182,6 +185,7 @@
     <string name="set_alarm_button_profile">Set Alarm</string>
     <string name="voice_search">Voice Search</string>
     <string name="search_article">Search Article</string>
+    <string name="empty_calories_warning">Warning Issue</string>
 
 
 </resources>

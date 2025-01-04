@@ -10,9 +10,10 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView2"
         android:layout_width="match_parent"
-        android:layout_height="195dp"
+        android:layout_height="wrap_content"
         app:cardElevation="10dp"
         app:cardCornerRadius="12dp"
+        android:backgroundTint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -63,7 +64,7 @@
                 <SearchView
                     android:id="@+id/article_search"
                     android:layout_width="350dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:layout_margin="10dp"
                     android:iconifiedByDefault="false"
                     android:queryHint="@string/search_article"

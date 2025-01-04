@@ -13,7 +13,6 @@ data class PredictResponse(
     @field:SerializedName("confidence")
     val confidence: Any? = null
 )
-//binding.editPictureUser.setOnClickListener { startGallery() }
 
 data class Nutrisi(
 

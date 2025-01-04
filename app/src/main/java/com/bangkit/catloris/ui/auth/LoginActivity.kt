@@ -20,6 +20,7 @@ class LoginActivity : AppCompatActivity() {
     private val loginViewModel: LoginViewModel by viewModels {
         LoginViewModelFactory(LoginRepository())
     }
+    private lateinit var email: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,11 +35,11 @@ class LoginActivity : AppCompatActivity() {
 
     private fun setupActions() {
         binding.loginButton.setOnClickListener {
-            val email = binding.loginEmail.text.toString().trim()
+            email = binding.loginEmail.text.toString().trim()
             val password = binding.passLogin.text.toString().trim()
 
             if (email.isEmpty() || password.isEmpty()) {
-                Toast.makeText(this, "Tolong isi data Anda", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Please fill out your data", Toast.LENGTH_SHORT).show()
             } else {
                 login(email, password)
             }
@@ -52,6 +53,7 @@ class LoginActivity : AppCompatActivity() {
             mainIntent.putExtra("email_user", email)
             startActivity(mainIntent)
             finish()
+
         }
 
         binding.registerBtn.setOnClickListener {
@@ -66,8 +68,16 @@ class LoginActivity : AppCompatActivity() {
             response?.let {
                 if (!it.error!!) {
                     saveToken(it.data?.accessToken ?: "")
-                    Toast.makeText(this, "Login Sukses", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Login Success", Toast.LENGTH_SHORT).show()
+                    val sharedPreferences = getSharedPreferences("email_user", MODE_PRIVATE)
+                    sharedPreferences.edit()
+                        .putString("email_user", email)
+                        .apply()
 
+                    val mainIntent = Intent(this, MainActivity::class.java)
+                    mainIntent.putExtra("email_user", email)
+                    startActivity(mainIntent)
+                    finish()
                 } else {
                     Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
                 }
