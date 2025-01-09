@@ -36,6 +36,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        mlModelBinding = true
     }
 }
 
@@ -63,10 +64,15 @@ dependencies {
 
     implementation(libs.circleimageview)
     implementation(libs.glide)
+    implementation(libs.tensorflow.lite.support)
+    implementation(libs.tensorflow.lite.metadata)
     annotationProcessor (libs.compiler)
+
+    implementation(libs.tensorflow.lite.task.vision)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
 
 }

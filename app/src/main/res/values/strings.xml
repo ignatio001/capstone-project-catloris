@@ -71,6 +71,7 @@
     <string name="scan_result_carbo">Carbohydrate :</string>
     <string name="scan_result_all">--</string>
     <string name="empty_image_warning">Entry Your Pict First</string>
+    <string name="image_classifier_failed">Failed to Prepate Image Classifier</string>
 
 
     <!-- Challenge -->
