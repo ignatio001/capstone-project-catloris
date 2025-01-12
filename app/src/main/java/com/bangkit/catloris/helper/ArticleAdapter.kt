@@ -47,8 +47,7 @@ class ArticleAdapter(private val context: Context, private var articleList: List
 
     @SuppressLint("NotifyDataSetChanged")
     fun updateArticles(newList: List<ArticlesItem>) {
-        (articleList as ArrayList).clear()
-        (articleList as ArrayList).addAll(newList)
+        articleList = newList
         notifyDataSetChanged()
     }
 

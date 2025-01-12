@@ -36,11 +36,10 @@ class ArticleFragment : Fragment() {
     ): View? {
         _binding = FragmentArticleBinding.inflate(inflater, container, false)
 
-        binding.voiceSearchBtn.setOnClickListener {
-            startVoiceSpeech()
-        }
+        binding.voiceSearchBtn.setOnClickListener { showLanguageSelection() }
 
-        binding.articleSearch.setOnQueryTextListener(object : android.widget.SearchView.OnQueryTextListener{
+        binding.articleSearch.setOnQueryTextListener(object :
+            android.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 query?.let { filterArticles(it) }
                 return true
@@ -56,10 +55,24 @@ class ArticleFragment : Fragment() {
         return binding.root
     }
 
-    private fun startVoiceSpeech() {
+    private fun showLanguageSelection() {
+        val languages = arrayOf("English", "Bahasa Indonesia", "Français", "Español")
+        val languageCodes = arrayOf("en-US", "id-ID", "fr-FR", "es-ES")
+
+        val builder = android.app.AlertDialog.Builder(requireContext())
+        builder.setTitle("Select Language")
+        builder.setItems(languages) { _, which ->
+            startVoiceSpeech(languageCodes[which])
+        }
+        builder.show()
+    }
+
+    private fun startVoiceSpeech(languageCode: String) {
+        binding.articleSearch.setQuery("", false)
+
         val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH).apply {
             putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
-            putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault())
+            putExtra(RecognizerIntent.EXTRA_LANGUAGE, languageCode)
         }
 
         try {
@@ -68,6 +81,7 @@ class ArticleFragment : Fragment() {
             Toast.makeText(context, "Your device does not support speech input", Toast.LENGTH_SHORT).show()
         }
     }
+
 
     @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -117,10 +131,15 @@ class ArticleFragment : Fragment() {
     }
 
     private fun filterArticles(query: String) {
-        val filteredList = articleList.filter {
-            it.title?.contains(query, ignoreCase = true) == true && it.title != "[Removed]"
+        if (query.isEmpty()) {
+            articleAdapter.updateArticles(articleList)
+        } else {
+            val filteredList = articleList.filter {
+                it.title?.contains(query, ignoreCase = true) == true && it.title != "[Removed]"
+            }
+            articleAdapter.updateArticles(filteredList)
         }
-        articleAdapter.updateArticles(filteredList)
+
     }
 
     override fun onDestroyView() {

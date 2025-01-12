@@ -38,7 +38,7 @@ class DashboardFragment : Fragment() {
         val nameUser = namePreferences.getString("name_user", null)
 
         val bmiPreferences = requireActivity().getSharedPreferences("bmi_user", MODE_PRIVATE)
-        val bmiPref = bmiPreferences.getString("bmi_user", null)
+        val bmiPref = bmiPreferences.getString("bmi_user", "Undefined")
 
 
         binding.dashboardUsername.text = nameUser
@@ -70,6 +70,10 @@ class DashboardFragment : Fragment() {
             "Obesity Type 3" -> {
                 binding.catIllustration.setImageResource(R.drawable.kucing_gendut)
                 binding.bodyFatsCondition.text = "78%-81% Please make a check up"
+            }
+            "Undefined" -> {
+                binding.catIllustration.setImageResource(R.drawable.catloring_logo_real)
+                binding.bodyFatsCondition.text = "Undefined - Go Check Up"
             }
         }
 

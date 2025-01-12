@@ -11,9 +11,9 @@
         android:id="@+id/cardView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardElevation="10dp"
-        app:cardCornerRadius="12dp"
         android:backgroundTint="@color/white"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -61,15 +61,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <SearchView
                     android:id="@+id/article_search"
                     android:layout_width="350dp"
                     android:layout_height="50dp"
                     android:layout_margin="10dp"
+                    android:background="@drawable/search_bar_custom"
                     android:iconifiedByDefault="false"
-                    android:queryHint="@string/search_article"
+                    style="@style/CustomSearchView"
                     android:queryBackground="@drawable/tranparent"
-                    android:background="@drawable/search_bar_custom" />
+                    android:queryHint="@string/search_article" />
 
                 <ImageView
                     android:id="@+id/voice_search_btn"
@@ -77,25 +79,21 @@
                     android:layout_height="30dp"
                     android:layout_gravity="center_vertical"
                     android:contentDescription="@string/voice_search"
-                    android:src="@drawable/ic_voice"/>
+                    android:src="@drawable/ic_voice" />
 
             </LinearLayout>
-
-
-
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
-
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/article_recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="16dp"
         android:layout_marginTop="195dp"
         android:layout_marginBottom="30dp"
+        android:padding="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
