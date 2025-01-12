@@ -18,8 +18,15 @@
     <string name="pass_login">Password</string>
     <string name="forgot_pass">Forgot Password?</string>
     <string name="login_button">LOGIN</string>
+    <string name="guest_button">AS GUEST</string>
     <string name="regist_word1">Don\'t have account?</string>
     <string name="regist_button">Sign Up</string>
+
+    <!-- Guest Page -->
+    <string name="guest_name">Enter Your Name</string>
+    <string name="guest_email">Enter Your Email</string>
+    <string name="guest_enter">ENTER</string>
+    <string name="guest_login">Back to Log In</string>
 
     <!-- Register Page -->
     <string name="register_logo">Register Logo</string>
@@ -43,8 +50,8 @@
     <string name="dashboard_point">Point : -</string>
     <string name="dashboard_edit_profile">Button Edit Profile</string>
     <string name="dashboard_logout">Button Logout</string>
-    <string name="dashboard_title_calories">CALORIES IN YOURS</string>
-    <string name="dashboard_calories_detect">2000 KKAL</string>
+    <string name="dashboard_title_calories">YOUR CONDITION</string>
+    <string name="dashboard_body_condition">Undefined</string>
     <string name="dashboard_btn_bmi">Body Mass Index</string>
     <string name="dashboard_btn_health_insight">Health Insight &amp; Tips</string>
     <string name="dashboard_btn_food_history">Your Food History</string>
@@ -53,7 +60,7 @@
     <string name="dashboard_scroll">Scroll >></string>
     <string name="dashbooard_cat_illustration">Cat Illustration</string>
     <string name="dashboard_your_fat">Your Fat : </string>
-    <string name="dashboard_dummy_fat">20%</string>
+    <string name="dashboard_dummy_fat">Undefined</string>
 
     <!-- Scan -->
     <string name="scan_title">ANALYZE THE FOOD</string>
@@ -111,8 +118,8 @@
     <string name="weight">Your Weight?\n(kg)</string>
     <string name="Age">Your Age?\n(y.o)</string>
     <string name="calculate">Calculate</string>
-    <string name="hint_score">50</string>
-    <string name="bmi_result">RESULTS</string>
+    <string name="hint_score">20</string>
+    <string name="bmi_result">-</string>
 
     <!-- Workout -->
     <string name="workout_image_description">workout desc</string>
@@ -125,11 +132,11 @@
     <!-- Challenge Page -->
     <string name="title_challenges">Consume 100 Calories in \nOne Healthy Meal</string>
     <string name="desc_challenges">In this challenge, players are encouraged to focus on consuming 100 calories from a single healthy meal. The goal is to inspire healthier eating habits by starting small and choosing nutrient-dense options. Examples include a serving of fresh fruit like an apple, a handful of berries, a small bowl of mixed greens with a light dressing, or a portion of unsweetened yogurt.\n\n</string>
-    <string name="food_desc">food desc\n</string>
-    <string name="food_title_description">food title desc\n</string>
-    <string name="food_history">food\n</string>
-    <string name="calories_history">578 calories\n</string>
-    <string name="sample_text">Food History\n</string>
+    <string name="food_desc">food desc</string>
+    <string name="food_title_description">food title desc</string>
+    <string name="food_history">food</string>
+    <string name="calories_history">578\ncalories</string>
+    <string name="food_recommendation">Food Recommendation</string>
 
     <!-- Workout Desc -->
     <string name="workdesc_btn_back">Back Button</string>
@@ -187,6 +194,8 @@
     <string name="voice_search">Voice Search</string>
     <string name="search_article">Search Article</string>
     <string name="empty_calories_warning">Warning Issue</string>
+    <string name="result_bmi">BODY MASS RESULT</string>
+    <string name="bmi_result_button">CONFIRM YOUR CONDITION</string>
 
 
 </resources>

@@ -3,6 +3,7 @@ package com.bangkit.catloris.ui.profile
 import android.content.Context.MODE_PRIVATE
 import android.net.Uri
 import android.os.Bundle
+import android.text.Editable
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -38,15 +39,20 @@ class ProfileFragment  : Fragment(R.layout.fragment_profile) {
     ): View? {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
 
-        val sharedPreferences = requireActivity().getSharedPreferences("email_user", MODE_PRIVATE)
-        val emailUser = sharedPreferences.getString("email_user", "Guest") // Default: "Guest"
-        binding.profileName.text = emailUser
+        val namePreferences = requireActivity().getSharedPreferences("name_user", MODE_PRIVATE)
+        val nameUser = namePreferences.getString("name_user", null)
 
-        profileViewModel.loadUserProfile()
+        val emailPreferences = requireActivity().getSharedPreferences("email_guest", MODE_PRIVATE)
+        val emailGuest = emailPreferences.getString("email_guest", null)
 
-        profileViewModel.email.observe(viewLifecycleOwner, Observer { email ->
-            binding.profileName.text = email
-        })
+        binding.fullName.text = Editable.Factory.getInstance().newEditable(nameUser)
+        binding.profileEmail.text = Editable.Factory.getInstance().newEditable(emailGuest)
+
+
+//        profileViewModel.loadUserProfile()
+//        profileViewModel.email.observe(viewLifecycleOwner, Observer { email ->
+//            binding.profileEmail.text = Editable.Factory.getInstance().newEditable(email)
+//        })
 
         binding.editPictureUser.setOnClickListener { startGallery() }
         setupEditProfileButtons()
@@ -56,7 +62,7 @@ class ProfileFragment  : Fragment(R.layout.fragment_profile) {
         binding.editProfileButton.visibility = View.VISIBLE
         binding.fullName.isFocusableInTouchMode = false
         binding.phoneNumber.isFocusableInTouchMode = false
-        binding.email.isFocusableInTouchMode = false
+        binding.profileEmail.isFocusableInTouchMode = false
 
         binding.editProfileButton.setOnClickListener {
             binding.editPictureUser.visibility = View.VISIBLE
@@ -66,8 +72,8 @@ class ProfileFragment  : Fragment(R.layout.fragment_profile) {
             binding.fullName.isFocusable = true
             binding.phoneNumber.isFocusableInTouchMode = true
             binding.phoneNumber.isFocusable = true
-            binding.email.isFocusableInTouchMode = true
-            binding.email.isFocusable = true
+            binding.profileEmail.isFocusableInTouchMode = true
+            binding.profileEmail.isFocusable = true
         }
 
         binding.saveProfileButton.setOnClickListener {
@@ -78,8 +84,8 @@ class ProfileFragment  : Fragment(R.layout.fragment_profile) {
             binding.fullName.isFocusable = false
             binding.phoneNumber.isFocusableInTouchMode = false
             binding.phoneNumber.isFocusable = false
-            binding.email.isFocusableInTouchMode = false
-            binding.email.isFocusable = false
+            binding.profileEmail.isFocusableInTouchMode = false
+            binding.profileEmail.isFocusable = false
         }
 
         return binding.root
@@ -97,7 +103,7 @@ class ProfileFragment  : Fragment(R.layout.fragment_profile) {
     private fun setEditTextFocusable(isFocusable: Boolean) {
         binding.fullName.isFocusableInTouchMode = isFocusable
         binding.phoneNumber.isFocusableInTouchMode = isFocusable
-        binding.email.isFocusableInTouchMode = isFocusable
+        binding.profileEmail.isFocusableInTouchMode = isFocusable
     }
 
     private fun startGallery() {

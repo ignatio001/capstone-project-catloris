@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_app"
+    tools:context=".ui.auth.GuestActivity">
+
+    <ImageView
+        android:id="@+id/guest_img"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/guest_button"
+        android:src="@drawable/catloris_logo"
+        android:layout_marginTop="80dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/guest_name"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/custom_input"
+        android:autofillHints="name"
+        android:drawableEnd="@drawable/ic_person_grey_24"
+        android:drawablePadding="12dp"
+        android:hint="@string/guest_name"
+        android:textColor="@color/black"
+        android:textColorHint="@color/new_darker"
+        android:inputType="text"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/guest_img" />
+
+    <EditText
+        android:id="@+id/guest_email"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/custom_input"
+        android:autofillHints="emailAddress"
+        android:drawableEnd="@drawable/ic_email_24"
+        android:hint="@string/guest_email"
+        android:textColor="@color/black"
+        android:textColorHint="@color/new_darker"
+        android:inputType="textEmailAddress"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/guest_name"/>
+
+    <TextView
+        android:id="@+id/guest_back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/guest_login"
+        android:textColor="@color/new_darker"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:padding="10dp"
+        android:textAlignment="textEnd"
+        android:textStyle="bold"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/guest_email" />
+
+    <Button
+        android:id="@+id/guest_enter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/color_3"
+        android:text="@string/guest_enter"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/guest_back"/>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

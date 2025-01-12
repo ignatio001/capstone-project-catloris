@@ -30,7 +30,6 @@
         android:layout_marginTop="16dp"
         android:src="@drawable/dummy_img"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.54"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title_profile_page" />
 
@@ -46,20 +45,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title_profile_page" />
 
-    <TextView
-        android:id="@+id/profile_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
-        android:text="@string/user_name"
-        android:textAlignment="center"
-        android:textColor="@color/color_4"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dash_profile_pict" />
+
 
     <Button
         android:id="@+id/save_profile_button"
@@ -75,7 +61,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile_name" />
+        app:layout_constraintTop_toBottomOf="@+id/dash_profile_pict" />
 
 
     <Button
@@ -90,7 +76,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile_name" />
+        app:layout_constraintTop_toBottomOf="@+id/dash_profile_pict" />
 
 
     <EditText
@@ -106,7 +92,6 @@
         android:focusable="false"
         android:focusableInTouchMode="false"
         android:hint="@string/full_name"
-        android:inputType="textEmailAddress"
         android:textColorHint="@color/new_darker"
         android:textColor="@color/black"
         android:paddingStart="12dp"
@@ -114,7 +99,7 @@
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile_name" />
+        app:layout_constraintTop_toBottomOf="@+id/dash_profile_pict" />
 
     <EditText
         android:id="@+id/phone_number"
@@ -138,7 +123,7 @@
         app:layout_constraintTop_toBottomOf="@+id/full_name" />
 
     <EditText
-        android:id="@+id/email"
+        android:id="@+id/profile_email"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_gravity="center_horizontal"

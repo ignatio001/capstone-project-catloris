@@ -28,9 +28,17 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.hide()
 
+        binding.guestButton.setOnClickListener { toGuest() }
+
         setupActions()
         observeViewModel()
         playAnimation()
+    }
+
+    private fun toGuest() {
+        val toGuestPage = Intent(this, GuestActivity::class.java)
+        startActivity(toGuestPage)
+        finish()
     }
 
     private fun setupActions() {

@@ -95,10 +95,12 @@
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
-            <TextView
+            <EditText
                 android:id="@+id/analyze_result"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:background="@drawable/custom_result_dash"
                 android:text="@string/scan_result_detect"
                 android:textAlignment="center"
                 android:textColor="@color/white"

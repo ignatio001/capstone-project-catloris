@@ -102,7 +102,7 @@
         android:layout_width="220dp"
         android:layout_height="220dp"
         android:layout_marginTop="20dp"
-        android:src="@drawable/kucing_normal"
+        android:src="@drawable/kucing_gendut"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profile_board_dash" />
@@ -131,11 +131,11 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/calories_detect"
+            android:id="@+id/body_condition"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:text="@string/dashboard_calories_detect"
+            android:text="@string/dashboard_body_condition"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="20sp"
@@ -146,25 +146,26 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="horizontal">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="5dp"
                 android:text="@string/dashboard_your_fat"
                 android:textColor="@color/white"
-                android:textStyle="bold"
-                android:layout_margin="5dp"
-                android:textSize="15sp"/>
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/body_fats_condition"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="5dp"
                 android:text="@string/dashboard_dummy_fat"
                 android:textColor="@color/white"
-                android:textStyle="bold"
-                android:layout_margin="5dp"
-                android:textSize="15sp"/>
+                android:textSize="15sp"
+                android:textStyle="bold" />
         </LinearLayout>
-
 
 
     </LinearLayout>
@@ -207,7 +208,7 @@
             android:layout_marginEnd="10dp"
             android:background="@drawable/tranparent"
             android:contentDescription="@string/dashboard_btn_food_history"
-            android:src="@drawable/food_button" />
+            android:src="@drawable/foodrec_img" />
 
         <ImageButton
             android:id="@+id/workout_button"

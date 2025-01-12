@@ -56,44 +56,82 @@ class ScanFragment : Fragment() {
 
         binding.galleryButton.setOnClickListener { startGallery() }
         binding.cameraButton.setOnClickListener { startCamera() }
-        binding.analyzeButton.setOnClickListener { uploadImage() }
+        binding.analyzeButton.setOnClickListener { analyzeImage() }
 
         binding.clearPictButton.setOnClickListener { clearPicture() }
 
         return binding.root
     }
 
-    private fun uploadImage() {
-        currentImageUri?.let { uri ->
-            val imageFile = uriToFile(uri, requireContext())
-            Log.d("Image Classification File", "showImageL: ${imageFile.path}")
+    private fun analyzeImage() {
+        val makanan = listOf(
+            mapOf("nama" to "ayam goreng krispi", "protein" to 20, "lemak" to 15, "karbohidrat" to 10, "kalori" to 255),
+            mapOf("nama" to "bakso", "protein" to 12, "lemak" to 8, "karbohidrat" to 15, "kalori" to 180),
+            mapOf("nama" to "burger", "protein" to 15, "lemak" to 20, "karbohidrat" to 30, "kalori" to 360),
+            mapOf("nama" to "kentang goreng", "protein" to 2, "lemak" to 15, "karbohidrat" to 35, "kalori" to 280),
+            mapOf("nama" to "nasi goreng", "protein" to 8, "lemak" to 10, "karbohidrat" to 45, "kalori" to 300),
+            mapOf("nama" to "nasi padang", "protein" to 20, "lemak" to 15, "karbohidrat" to 60, "kalori" to 450),
+            mapOf("nama" to "nasi putih", "protein" to 3, "lemak" to 0, "karbohidrat" to 40, "kalori" to 172),
+            mapOf("nama" to "nugget", "protein" to 10, "lemak" to 12, "karbohidrat" to 15, "kalori" to 208),
+            mapOf("nama" to "pizza", "protein" to 12, "lemak" to 14, "karbohidrat" to 35, "kalori" to 310),
+            mapOf("nama" to "rawon daging sapi", "protein" to 18, "lemak" to 12, "karbohidrat" to 20, "kalori" to 260),
+            mapOf("nama" to "rendang", "protein" to 25, "lemak" to 20, "karbohidrat" to 5, "kalori" to 330),
+            mapOf("nama" to "sate", "protein" to 20, "lemak" to 15, "karbohidrat" to 10, "kalori" to 250),
+            mapOf("nama" to "seblak", "protein" to 8, "lemak" to 10, "karbohidrat" to 30, "kalori" to 240),
+            mapOf("nama" to "sop", "protein" to 10, "lemak" to 5, "karbohidrat" to 15, "kalori" to 140),
+            mapOf("nama" to "tempe goreng", "protein" to 15, "lemak" to 10, "karbohidrat" to 8, "kalori" to 182)
+        )
 
-            val requestImageFile = imageFile.asRequestBody("image/jpeg".toMediaType())
-            val multipartBody = MultipartBody.Part.createFormData(
-                "image",
-                imageFile.name,
-                requestImageFile
-            )
+        val inputNama = binding.analyzeResult.text.toString().lowercase().trim()
+        val makananDitemukan = makanan.find { it["nama"] == inputNama }
 
-            lifecycleScope.launch {
-                try {
-                    val apiService = ApiConfig.getApiService()
-                    val successResponse = apiService.uploadImage(multipartBody)
-                    with(successResponse.nutrisi){
-                        binding.analyzeResult.text = this!!.nama
-                        binding.scanResultCalories.text = this.kalori.toString()
-                        binding.scanResultCarbo.text = this.karbohidrat.toString()
-                        binding.scanResultProtein.text = this.protein.toString()
-                        binding.scanResultFats.text = this.lemak.toString()
-                    }
-                } catch (e: HttpException) {
-                    val errorBody = e.response()?.errorBody()?.string()
-                    val errorResponse = Gson().fromJson(errorBody, ErrorResponse::class.java)
-                    showToast(errorResponse.detail.toString())
-                }
-            }
-        } ?: showToast(getString(R.string.empty_image_warning))
+        if (makananDitemukan != null) {
+            binding.scanResultCalories.text = makananDitemukan["kalori"].toString()
+            binding.scanResultCarbo.text = makananDitemukan["karbohidrat"].toString()
+            binding.scanResultProtein.text = makananDitemukan["protein"].toString()
+            binding.scanResultFats.text = makananDitemukan["lemak"].toString()
+
+            showToast("Data ditemukan untuk $inputNama")
+        } else {
+            showToast("Makanan tidak ditemukan")
+            binding.scanResultCalories.text = "-"
+            binding.scanResultCarbo.text = "-"
+            binding.scanResultProtein.text = "-"
+            binding.scanResultFats.text = "-"
+        }
     }
+
+//    private fun uploadImage() {
+//        currentImageUri?.let { uri ->
+//            val imageFile = uriToFile(uri, requireContext())
+//            Log.d("Image Classification File", "showImageL: ${imageFile.path}")
+//
+//            val requestImageFile = imageFile.asRequestBody("image/jpeg".toMediaType())
+//            val multipartBody = MultipartBody.Part.createFormData(
+//                "image",
+//                imageFile.name,
+//                requestImageFile
+//            )
+//
+//            lifecycleScope.launch {
+//                try {
+//                    val apiService = ApiConfig.getApiService()
+//                    val successResponse = apiService.uploadImage(multipartBody)
+//                    with(successResponse.nutrisi){
+//                        binding.analyzeResult.text = this!!.nama
+//                        binding.scanResultCalories.text = this.kalori.toString()
+//                        binding.scanResultCarbo.text = this.karbohidrat.toString()
+//                        binding.scanResultProtein.text = this.protein.toString()
+//                        binding.scanResultFats.text = this.lemak.toString()
+//                    }
+//                } catch (e: HttpException) {
+//                    val errorBody = e.response()?.errorBody()?.string()
+//                    val errorResponse = Gson().fromJson(errorBody, ErrorResponse::class.java)
+//                    showToast(errorResponse.detail.toString())
+//                }
+//            }
+//        } ?: showToast(getString(R.string.empty_image_warning))
+//    }
 
     private fun showToast(message: String) {
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()

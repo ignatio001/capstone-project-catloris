@@ -31,15 +31,16 @@ class MainActivity : AppCompatActivity() {
         mediaPlayer.start()
 
         val sharedPreferences = getSharedPreferences("email_user", MODE_PRIVATE)
-        val emailUser = sharedPreferences.getString("email_user", null)
-        sharedPreferences.edit()
-            .putString("email_user", emailUser)
-            .apply()
+        val guestPreferences = getSharedPreferences("name_user", MODE_PRIVATE)
+        val bmiPreferences = getSharedPreferences("bmi_user", MODE_PRIVATE)
+        val emailGuestPreferences = getSharedPreferences("email_guest", MODE_PRIVATE)
 
-        val dashboardFragment = DashboardFragment()
-        val bundle = Bundle()
-        bundle.putString("email_user", emailUser)
-        dashboardFragment.arguments = bundle
+        val emailUser = sharedPreferences.getString("email_user", null)
+        val nameUser = guestPreferences.getString("name_user", null)
+        val bmiUser = bmiPreferences.getString("bmi_user", null)
+        val emailGuest = emailGuestPreferences.getString("email_guest", null)
+
+
 
         supportActionBar?.hide()
 
@@ -63,7 +64,12 @@ class MainActivity : AppCompatActivity() {
         binding.navView.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.navigation_dashboard -> {
-                    navController.navigate(R.id.navigation_dashboard, bundle)
+                    val dashboardBundle = Bundle().apply {
+                        putString("bmi_user", bmiUser)
+                        putString("name_user", nameUser)
+                        putString("email_guest", emailGuest)
+                    }
+                    navController.navigate(R.id.navigation_dashboard, dashboardBundle)
                     true
                 }
 

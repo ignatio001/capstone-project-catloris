@@ -9,7 +9,7 @@
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
     <application
         android:allowBackup="true"
@@ -21,6 +21,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CATLORIS"
         tools:targetApi="31">
+        <activity
+            android:name=".ui.auth.GuestActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.challenge.ChallengeScan"
             android:exported="false" />

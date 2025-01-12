@@ -34,12 +34,46 @@ class DashboardFragment : Fragment() {
 
         _binding = FragmentDashboardBinding.inflate(inflater, container, false)
 
-        // ini data untuk synchronize ke API
-        val sharedPreferences = requireActivity().getSharedPreferences("email_user", MODE_PRIVATE)
-        val emailUser = sharedPreferences.getString("email_user", null)
+        val namePreferences = requireActivity().getSharedPreferences("name_user", MODE_PRIVATE)
+        val nameUser = namePreferences.getString("name_user", null)
+
+        val bmiPreferences = requireActivity().getSharedPreferences("bmi_user", MODE_PRIVATE)
+        val bmiPref = bmiPreferences.getString("bmi_user", null)
 
 
-        binding.dashboardUsername.text = emailUser
+        binding.dashboardUsername.text = nameUser
+        binding.bodyCondition.text = bmiPref
+
+        val bodyCondition = binding.bodyCondition.text.toString().trim()
+
+        when(bodyCondition) {
+            "Normal" -> {
+                binding.catIllustration.setImageResource(R.drawable.kucing_normal)
+                binding.bodyFatsCondition.text = "15%-31%"
+            }
+            "Underweight" -> {
+                binding.catIllustration.setImageResource(R.drawable.kucing_kurus)
+                binding.bodyFatsCondition.text = "6%-13%"
+            }
+            "Overweight" -> {
+                binding.catIllustration.setImageResource(R.drawable.kucing_gendut)
+                binding.bodyFatsCondition.text = "31%-41%"
+            }
+            "Obesity Type 1" -> {
+                binding.catIllustration.setImageResource(R.drawable.kucing_gendut)
+                binding.bodyFatsCondition.text = "41%-57% Please Control your Habit"
+            }
+            "Obesity Type 2" -> {
+                binding.catIllustration.setImageResource(R.drawable.kucing_gendut)
+                binding.bodyFatsCondition.text = "59%-67% Make sure you diet"
+            }
+            "Obesity Type 3" -> {
+                binding.catIllustration.setImageResource(R.drawable.kucing_gendut)
+                binding.bodyFatsCondition.text = "78%-81% Please make a check up"
+            }
+        }
+
+
 
         binding.dashboardLogout.setOnClickListener {
             val logoutIntent = Intent(requireContext(), LoginActivity::class.java)
@@ -56,6 +90,7 @@ class DashboardFragment : Fragment() {
         }
         binding.foodButton.setOnClickListener {
             val foodIntent = Intent(requireContext(), FoodHistoryActivity::class.java)
+            foodIntent.putExtra("user_con", bodyCondition)
             startActivity(foodIntent)
         }
         binding.workoutButton.setOnClickListener {
